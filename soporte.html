@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Soporte — Taxi Driver Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --negro: #0a0a0a; --amarillo: #f5c518; --blanco: #ffffff; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.7; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--amarillo); text-decoration: none; }
+    .logo span { color: var(--blanco); }
+    nav a.back { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a.back:hover { color: var(--blanco); }
+    main { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .page-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 1rem; }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1; margin-bottom: 0.5rem; }
+    .subtitulo { font-size: 1.05rem; color: rgba(255,255,255,0.45); margin-bottom: 3rem; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--amarillo); margin-top: 2.5rem; margin-bottom: 0.75rem; }
+    p { color: rgba(255,255,255,0.7); margin-bottom: 1rem; font-size: 0.95rem; }
+    ul { color: rgba(255,255,255,0.7); padding-left: 1.5rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    ul li { margin-bottom: 0.6rem; }
+    a { color: var(--amarillo); }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 2.5rem 0; }
+
+    .contact-card {
+      background: rgba(245,197,24,0.06);
+      border: 1px solid rgba(245,197,24,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .contact-card p { color: rgba(255,255,255,0.5); margin-bottom: 1.2rem; }
+    .btn-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--amarillo);
+      color: var(--negro);
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-email:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.3); }
+
+    .faq-item {
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .faq-pregunta { font-weight: 500; font-size: 0.95rem; color: var(--blanco); margin-bottom: 0.5rem; }
+    .faq-respuesta { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin: 0; }
+
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">🚖 <span>Taxi Driver Control</span></a>
+    <a href="/" class="back">← Volver al inicio</a>
+  </nav>
+
+  <main>
+    <p class="page-label">Ayuda</p>
+    <h1>Soporte</h1>
+    <p class="subtitulo">Estamos aquí para ayudarte. Responderemos en menos de 48 horas.</p>
+
+    <hr class="divider" />
+
+    <h2>Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿La app es gratuita?</p>
+      <p class="faq-respuesta">Sí, Taxi Driver Control es completamente gratuita. Sin compras dentro de la app, sin suscripciones ocultas.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿Funciona sin conexión a internet?</p>
+      <p class="faq-respuesta">Sí. Puedes registrar servicios aunque no tengas cobertura. Los datos se guardan localmente y se sincronizan automáticamente en cuanto recuperas la conexión.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿Mis datos están seguros?</p>
+      <p class="faq-respuesta">Tus datos se almacenan en servidores seguros dentro de la Unión Europea y nunca se venden a terceros. Consulta nuestra política de privacidad para más detalles.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿Puedo usar la app en varios dispositivos?</p>
+      <p class="faq-respuesta">Sí. Al iniciar sesión con tu cuenta en cualquier dispositivo tendrás acceso a todos tus datos sincronizados.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿Cómo elimino mi cuenta y mis datos?</p>
+      <p class="faq-respuesta">Puedes eliminar tu cuenta desde Ajustes dentro de la app, o enviarnos un email a contacto@taxidrivercontrol.com con el asunto "Eliminar cuenta". Tus datos se borrarán en un plazo máximo de 30 días.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿La app está disponible para Android?</p>
+      <p class="faq-respuesta">Próximamente. Actualmente está disponible para iOS y estamos trabajando en la versión para Android.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-pregunta">¿Puedo exportar mis datos?</p>
+      <p class="faq-respuesta">Estamos trabajando en esta funcionalidad. Si necesitas tus datos con urgencia contáctanos y te ayudamos.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <h2>¿No encuentras lo que buscas?</h2>
+
+    <div class="contact-card">
+      <p>Escríbenos directamente y te respondemos en menos de 48 horas.</p>
+      <a href="mailto:contacto@taxidrivercontrol.com" class="btn-email">✉️ contacto@taxidrivercontrol.com</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Taxi Driver Control · <a href="/privacidad.html">Privacidad</a> · <a href="/soporte.html">Soporte</a></p>
+  </footer>
+
+</body>
+</html>
