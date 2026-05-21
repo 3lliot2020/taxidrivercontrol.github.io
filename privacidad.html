@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Política de Privacidad — Taxi Driver Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --negro: #0a0a0a; --amarillo: #f5c518; --blanco: #ffffff; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.7; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: var(--amarillo); text-decoration: none;
+    }
+    .logo span { color: var(--blanco); }
+    nav a.back { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a.back:hover { color: var(--blanco); }
+    main { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .page-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amarillo); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .fecha { font-size: 0.85rem; color: rgba(255,255,255,0.35); margin-bottom: 3rem; }
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.2rem; color: var(--amarillo);
+      margin-top: 2.5rem; margin-bottom: 0.75rem;
+    }
+    p { color: rgba(255,255,255,0.7); margin-bottom: 1rem; font-size: 0.95rem; }
+    ul { color: rgba(255,255,255,0.7); padding-left: 1.5rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    ul li { margin-bottom: 0.4rem; }
+    a { color: var(--amarillo); }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 2rem 0; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">🚖 <span>Taxi Driver Control</span></a>
+    <a href="/" class="back">← Volver al inicio</a>
+  </nav>
+
+  <main>
+    <p class="page-label">Legal</p>
+    <h1>Política de Privacidad</h1>
+    <p class="fecha">Última actualización: mayo de 2026</p>
+
+    <p>En <strong>Taxi Driver Control</strong> nos tomamos muy en serio la privacidad de nuestros usuarios. Esta política describe qué datos recogemos, cómo los usamos y cuáles son tus derechos.</p>
+
+    <hr class="divider" />
+
+    <h2>1. Responsable del tratamiento</h2>
+    <p>El responsable del tratamiento de los datos es el titular de la aplicación Taxi Driver Control, con domicilio en Rincón de la Victoria, Málaga (España). Puedes contactarnos en <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a>.</p>
+
+    <h2>2. Datos que recogemos</h2>
+    <p>Para el funcionamiento de la aplicación recogemos únicamente los datos necesarios:</p>
+    <ul>
+      <li><strong>Datos de registro:</strong> dirección de correo electrónico para crear tu cuenta.</li>
+      <li><strong>Datos de uso:</strong> servicios registrados, importes, turnos, kilómetros y gastos que tú mismo introduces en la app.</li>
+      <li><strong>Datos técnicos:</strong> información básica del dispositivo para el correcto funcionamiento de la app (sistema operativo, versión de la app).</li>
+    </ul>
+    <p>No recogemos datos de localización, ni datos biométricos, ni información de contactos del dispositivo.</p>
+
+    <h2>3. Finalidad y base legal</h2>
+    <p>Los datos se tratan con las siguientes finalidades:</p>
+    <ul>
+      <li>Prestar el servicio de gestión de actividad del taxi (base legal: ejecución de contrato).</li>
+      <li>Mantener tu cuenta activa y segura (base legal: interés legítimo).</li>
+      <li>Cumplir con obligaciones legales aplicables (base legal: cumplimiento legal).</li>
+    </ul>
+
+    <h2>4. Almacenamiento y seguridad</h2>
+    <p>Los datos se almacenan en servidores de <strong>Supabase</strong> (PostgreSQL), ubicados en la Unión Europea. Supabase cumple con el RGPD y aplica medidas de seguridad técnicas y organizativas adecuadas.</p>
+    <p>Los datos almacenados localmente en tu dispositivo (modo sin conexión) se gestionan mediante AsyncStorage y permanecen en tu dispositivo hasta que se sincronizan con el servidor.</p>
+
+    <h2>5. Compartición de datos</h2>
+    <p>No vendemos ni cedemos tus datos a terceros con fines comerciales. Únicamente compartimos datos con:</p>
+    <ul>
+      <li><strong>Supabase:</strong> proveedor de infraestructura de base de datos.</li>
+      <li>Autoridades competentes, cuando así lo exija la ley.</li>
+    </ul>
+
+    <h2>6. Conservación de datos</h2>
+    <p>Conservamos tus datos mientras mantengas tu cuenta activa. Si eliminas tu cuenta, tus datos personales serán eliminados de nuestros servidores en un plazo máximo de 30 días, salvo obligación legal de conservación.</p>
+
+    <h2>7. Tus derechos</h2>
+    <p>De acuerdo con el RGPD (Reglamento UE 2016/679) tienes derecho a:</p>
+    <ul>
+      <li><strong>Acceso:</strong> solicitar qué datos tenemos sobre ti.</li>
+      <li><strong>Rectificación:</strong> corregir datos incorrectos.</li>
+      <li><strong>Supresión:</strong> solicitar la eliminación de tus datos ("derecho al olvido").</li>
+      <li><strong>Portabilidad:</strong> recibir tus datos en formato estructurado.</li>
+      <li><strong>Oposición:</strong> oponerte al tratamiento en determinadas circunstancias.</li>
+      <li><strong>Limitación:</strong> solicitar la limitación del tratamiento.</li>
+    </ul>
+    <p>Para ejercer cualquiera de estos derechos escríbenos a <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a>. También puedes presentar una reclamación ante la <strong>Agencia Española de Protección de Datos (AEPD)</strong> en <a href="https://www.aepd.es" target="_blank">www.aepd.es</a>.</p>
+
+    <h2>8. Eliminación de cuenta</h2>
+    <p>Puedes eliminar tu cuenta y todos tus datos directamente desde la sección <strong>Ajustes</strong> de la aplicación, o enviando un correo a <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a> con el asunto "Eliminar cuenta".</p>
+
+    <h2>9. Cambios en esta política</h2>
+    <p>Podemos actualizar esta política ocasionalmente. Te notificaremos cualquier cambio relevante a través de la app o por email. La fecha de última actualización siempre estará visible al inicio de este documento.</p>
+
+    <hr class="divider" />
+    <p>Si tienes cualquier duda sobre esta política, escríbenos a <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a>.</p>
+  </main>
+
+  <footer>
+    <p>© 2026 Taxi Driver Control · <a href="/privacidad.html">Privacidad</a> · <a href="/soporte.html">Soporte</a></p>
+  </footer>
+
+</body>
+</html>
