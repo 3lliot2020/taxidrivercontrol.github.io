@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eliminar Cuenta — Taxi Driver Control</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --negro: #0a0a0a; --amarillo: #f5c518; --blanco: #ffffff; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.7; }
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem;
+      color: var(--amarillo); text-decoration: none;
+    }
+    .logo span { color: var(--blanco); }
+    nav a.back { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a.back:hover { color: var(--blanco); }
+    main { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .page-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--amarillo); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .fecha { font-size: 0.85rem; color: rgba(255,255,255,0.35); margin-bottom: 3rem; }
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.2rem; color: var(--amarillo);
+      margin-top: 2.5rem; margin-bottom: 0.75rem;
+    }
+    p { color: rgba(255,255,255,0.7); margin-bottom: 1rem; font-size: 0.95rem; }
+    ul { color: rgba(255,255,255,0.7); padding-left: 1.5rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    ul li { margin-bottom: 0.4rem; }
+    ol { color: rgba(255,255,255,0.7); padding-left: 1.5rem; margin-bottom: 1rem; font-size: 0.95rem; }
+    ol li { margin-bottom: 0.75rem; }
+    a { color: var(--amarillo); }
+    .divider { border: none; border-top: 1px solid rgba(255,255,255,0.07); margin: 2rem 0; }
+    .aviso {
+      background: rgba(245,197,24,0.08);
+      border: 1px solid rgba(245,197,24,0.2);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .aviso p { color: rgba(255,255,255,0.85); margin-bottom: 0; }
+    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.07); }
+    footer p { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">🚖 <span>Taxi Driver Control</span></a>
+    <a href="/" class="back">← Volver al inicio</a>
+  </nav>
+
+  <main>
+    <p class="page-label">Cuenta</p>
+    <h1>Eliminar tu cuenta</h1>
+    <p class="fecha">Última actualización: mayo de 2026</p>
+
+    <div class="aviso">
+      <p>⚠️ <strong>Atención:</strong> la eliminación de tu cuenta es permanente e irreversible. Todos tus datos serán eliminados de nuestros servidores en un plazo máximo de 30 días.</p>
+    </div>
+
+    <p>En <strong>Taxi Driver Control</strong> respetamos tu derecho a eliminar tu cuenta y todos los datos asociados. Puedes hacerlo de dos formas:</p>
+
+    <hr class="divider" />
+
+    <h2>Opción 1 — Desde la propia app</h2>
+    <p>Es la forma más rápida. La eliminación es inmediata:</p>
+    <ol>
+      <li>Abre la app <strong>Taxi Driver Control</strong> en tu dispositivo.</li>
+      <li>Ve a la pestaña <strong>Menú</strong> en la barra inferior.</li>
+      <li>Pulsa <strong>Ajustes</strong>.</li>
+      <li>Desplázate hasta el final y pulsa <strong>"Eliminar cuenta"</strong>.</li>
+      <li>Confirma la eliminación cuando se te solicite.</li>
+    </ol>
+    <p>Tu cuenta y todos tus datos se eliminarán de forma inmediata e irreversible.</p>
+
+    <hr class="divider" />
+
+    <h2>Opción 2 — Por correo electrónico</h2>
+    <p>Si no puedes acceder a la app, envía un correo a <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a> con:</p>
+    <ul>
+      <li><strong>Asunto:</strong> Eliminar cuenta</li>
+      <li><strong>Cuerpo:</strong> Indica el correo electrónico asociado a tu cuenta de Taxi Driver Control.</li>
+    </ul>
+    <p>Procesaremos tu solicitud en un plazo máximo de <strong>7 días hábiles</strong>.</p>
+
+    <hr class="divider" />
+
+    <h2>Datos que se eliminan</h2>
+    <p>Al eliminar tu cuenta se borran permanentemente:</p>
+    <ul>
+      <li>Tu dirección de correo electrónico y credenciales de acceso.</li>
+      <li>Todos los servicios, turnos, reservas y liquidaciones registrados.</li>
+      <li>Tus datos de configuración y preferencias.</li>
+      <li>Los registros de mantenimiento del vehículo.</li>
+      <li>Los gastos registrados.</li>
+    </ul>
+
+    <h2>Datos que se conservan temporalmente</h2>
+    <p>Por obligaciones legales y de seguridad, algunos registros técnicos anonimizados pueden conservarse hasta un máximo de <strong>30 días</strong> adicionales antes de su eliminación definitiva.</p>
+    <p>No conservamos ningún dato personal identificable tras ese plazo.</p>
+
+    <hr class="divider" />
+    <p>Si tienes cualquier duda escríbenos a <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a>.</p>
+  </main>
+
+  <footer>
+    <p>© 2026 Taxi Driver Control · <a href="/privacidad.html">Privacidad</a> · <a href="/soporte.html">Soporte</a></p>
+  </footer>
+
+</body>
+</html>
