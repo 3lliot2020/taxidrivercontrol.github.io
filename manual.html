@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual de Usuario — Taxi Driver Control</title>
+  <meta name="description" content="Guía completa de uso de Taxi Driver Control. Aprende a gestionar tus turnos, servicios y liquidaciones." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --negro: #0a0a0a;
+      --amarillo: #f5c518;
+      --blanco: #ffffff;
+      --radio: 16px;
+      --gris: rgba(255,255,255,0.06);
+      --borde: rgba(255,255,255,0.08);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,10,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--borde);
+    }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--amarillo); text-decoration: none; }
+    .logo span { color: var(--blanco); }
+    nav a.back { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a.back:hover { color: var(--blanco); }
+
+    /* HERO */
+    .hero { padding: 8rem 2rem 4rem; text-align: center; max-width: 700px; margin: 0 auto; }
+    .page-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 1rem; }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; }
+    .hero-sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; margin-bottom: 3rem; }
+
+    /* ÍNDICE */
+    .indice {
+      max-width: 900px; margin: 0 auto 4rem; padding: 0 2rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem;
+    }
+    .indice a {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--gris); border: 1px solid var(--borde);
+      border-radius: 12px; padding: 0.75rem 1rem;
+      text-decoration: none; color: rgba(255,255,255,0.7);
+      font-size: 0.9rem; transition: all 0.2s;
+    }
+    .indice a:hover { border-color: rgba(245,197,24,0.4); color: var(--blanco); background: rgba(245,197,24,0.06); }
+    .indice a .emoji { font-size: 1.2rem; }
+
+    /* SECCIONES */
+    .seccion {
+      max-width: 960px; margin: 0 auto 5rem; padding: 0 2rem;
+      scroll-margin-top: 80px;
+    }
+    .seccion-header { margin-bottom: 2.5rem; }
+    .seccion-numero { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 0.5rem; }
+    h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.5rem; }
+    .seccion-desc { color: rgba(255,255,255,0.5); font-size: 0.95rem; max-width: 600px; }
+
+    /* PASO */
+    .paso {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+      background: var(--gris); border: 1px solid var(--borde);
+      border-radius: 20px; padding: 2.5rem; margin-bottom: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .paso:hover { border-color: rgba(245,197,24,0.2); }
+    .paso.invertido { direction: rtl; }
+    .paso.invertido > * { direction: ltr; }
+    .paso-img-wrap { display: flex; justify-content: center; }
+    .paso-img {
+      width: 100%; max-width: 220px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .paso-img.ancha { max-width: 300px; border-radius: 16px; }
+    .paso-content {}
+    .paso-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(245,197,24,0.1); border: 1px solid rgba(245,197,24,0.2);
+      color: var(--amarillo); font-size: 0.75rem; font-weight: 500;
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 1rem;
+    }
+    h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 0.75rem; }
+    .paso-content p { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 0.75rem; }
+    .paso-content ul { color: rgba(255,255,255,0.6); font-size: 0.9rem; padding-left: 1.25rem; }
+    .paso-content ul li { margin-bottom: 0.4rem; }
+    .tip {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.15);
+      border-radius: 10px; padding: 0.75rem 1rem; margin-top: 1rem;
+    }
+    .tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+    .tip p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 0; }
+
+    /* PASO ANCHO (sin imagen o imagen grande) */
+    .paso-ancho {
+      background: var(--gris); border: 1px solid var(--borde);
+      border-radius: 20px; padding: 2.5rem; margin-bottom: 1.5rem;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--borde); margin: 4rem 0; max-width: 960px; margin-left: auto; margin-right: auto; }
+
+    /* FOOTER */
+    footer { border-top: 1px solid var(--borde); padding: 3rem 2rem; text-align: center; margin-top: 4rem; }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--blanco); }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
+
+    @media (max-width: 680px) {
+      .paso { grid-template-columns: 1fr; gap: 2rem; }
+      .paso.invertido { direction: ltr; }
+      .paso-img-wrap { order: -1; }
+      .indice { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .indice { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">🚖 <span>Taxi Driver Control</span></a>
+    <a href="/" class="back">← Volver al inicio</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="page-label">Manual de usuario</p>
+    <h1>Guía completa de la app</h1>
+    <p class="hero-sub">Todo lo que necesitas saber para sacar el máximo partido a Taxi Driver Control, paso a paso.</p>
+  </div>
+
+  <!-- ÍNDICE -->
+  <nav class="indice" aria-label="Índice de contenidos">
+    <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
+    <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
+    <a href="#cerrar"><span class="emoji">🔒</span> Cerrar turno</a>
+    <a href="#totales"><span class="emoji">💰</span> Totales</a>
+    <a href="#compartir"><span class="emoji">💬</span> Compartir por WhatsApp</a>
+  </nav>
+
+  <!-- SECCIÓN 1: ACCESO -->
+  <section class="seccion" id="acceso">
+    <div class="seccion-header">
+      <p class="seccion-numero">01 — Acceso y registro</p>
+      <h2>Crea tu cuenta o inicia sesión</h2>
+      <p class="seccion-desc">El primer paso es crear tu cuenta. Solo necesitas tu nombre, email y una contraseña.</p>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Pantalla_login.jpg" alt="Pantalla de login" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Pantalla inicial</span>
+        <h3>Pantalla de acceso</h3>
+        <p>Al abrir la app por primera vez verás la pantalla de login. Si ya tienes cuenta introduce tu email y contraseña y pulsa <strong>Entrar</strong>.</p>
+        <p>Si es tu primera vez pulsa <strong>¿Eres nuevo? Regístrate aquí</strong>.</p>
+      </div>
+    </div>
+
+    <div class="paso invertido">
+      <div class="paso-img-wrap">
+        <img src="capturas/Login_registro.jpg" alt="Formulario de registro" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Registro</span>
+        <h3>Crear cuenta nueva</h3>
+        <p>Rellena tu nombre completo, email y contraseña. Luego indica tu rol:</p>
+        <ul>
+          <li><strong>¿Eres Titular?</strong> — Actívalo si eres el propietario del taxi</li>
+          <li><strong>¿Tienes asalariados?</strong> — Actívalo si tienes conductores a tu cargo</li>
+        </ul>
+        <div class="tip">
+          <span class="tip-icon">💡</span>
+          <p>Esta configuración determina qué pantallas y cálculos verás. Puedes cambiarla después en Ajustes.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Login_inicio.jpg" alt="Login con cuenta" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Iniciar sesión</span>
+        <h3>Acceso con cuenta existente</h3>
+        <p>Introduce tu email y contraseña. La app recuerda tu sesión — no necesitarás volver a introducirlos salvo que cierres sesión manualmente.</p>
+        <div class="tip">
+          <span class="tip-icon">🔒</span>
+          <p>Tu sesión se mantiene activa aunque cierres la app o el teléfono se quede sin batería.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECCIÓN 2: SERVICIOS -->
+  <section class="seccion" id="servicios">
+    <div class="seccion-header">
+      <p class="seccion-numero">02 — Servicios</p>
+      <h2>Registra cada viaje del día</h2>
+      <p class="seccion-desc">La pantalla principal de la app. Aquí añades cada servicio según lo vas haciendo durante el turno.</p>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Servicios_vacio.jpg" alt="Servicios vacío" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Al iniciar el turno</span>
+        <h3>Turno abierto, sin servicios</h3>
+        <p>Cuando abres un turno nuevo la lista aparece vacía y el contador marca <strong>€0.00</strong>. Pulsa <strong>+ NUEVO</strong> para añadir tu primer servicio.</p>
+        <div class="tip">
+          <span class="tip-icon">💡</span>
+          <p>El botón <strong>CERRAR</strong> (rojo) cierra el turno al final del día. No lo pulses hasta terminar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="paso invertido">
+      <div class="paso-img-wrap">
+        <img src="capturas/Poner_importe.jpg" alt="Añadir servicio" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Añadir viaje</span>
+        <h3>Registrar un servicio</h3>
+        <p>Al pulsar <strong>+ NUEVO</strong> aparece el formulario de viaje. Introduce:</p>
+        <ul>
+          <li><strong>Importe €</strong> — lo que marca el taxímetro</li>
+          <li><strong>Propina €</strong> — si el cliente deja propina (opcional)</li>
+          <li><strong>Método de pago</strong> — Efectivo, Tarjeta o Compañía</li>
+        </ul>
+        <p>Si hay propina indica si es en tarjeta o efectivo. Pulsa <strong>Guardar</strong>.</p>
+      </div>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Servicios_completado.jpg" alt="Lista de servicios" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Durante el turno</span>
+        <h3>Lista de servicios del día</h3>
+        <p>Cada servicio aparece en la lista con su método de pago e importe. El contador superior muestra el <strong>total acumulado</strong> del turno en tiempo real.</p>
+        <ul>
+          <li>En verde aparecen las propinas</li>
+          <li>Pulsa sobre cualquier servicio para editarlo o eliminarlo</li>
+        </ul>
+        <div class="tip">
+          <span class="tip-icon">💡</span>
+          <p>Puedes deslizar un servicio hacia la izquierda para eliminarlo rápidamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECCIÓN 3: CERRAR TURNO -->
+  <section class="seccion" id="cerrar">
+    <div class="seccion-header">
+      <p class="seccion-numero">03 — Cerrar turno</p>
+      <h2>Finaliza el día y registra los gastos</h2>
+      <p class="seccion-desc">Al acabar la jornada cierra el turno indicando los kilómetros recorridos y los gastos del día.</p>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Cerrar_Turno.jpg" alt="Cerrar turno" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Final del turno</span>
+        <h3>Formulario de cierre</h3>
+        <p>Al pulsar <strong>CERRAR</strong> aparece el formulario de cierre. Introduce:</p>
+        <ul>
+          <li><strong>KM totales</strong> — kilómetros recorridos en el turno</li>
+          <li><strong>Gasto Extra €</strong> — cualquier gasto adicional (parking, peaje...)</li>
+          <li><strong>Motivo</strong> — descripción del gasto extra (opcional)</li>
+        </ul>
+        <p>Pulsa <strong>Cerrar</strong> para confirmar. Los datos se guardan y se calculan los totales automáticamente.</p>
+        <div class="tip">
+          <span class="tip-icon">⛽</span>
+          <p>El combustible se registra en Ajustes como gasto fijo diario o puedes añadirlo como Gasto Extra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECCIÓN 4: TOTALES -->
+  <section class="seccion" id="totales">
+    <div class="seccion-header">
+      <p class="seccion-numero">04 — Totales</p>
+      <h2>El resumen financiero del turno</h2>
+      <p class="seccion-desc">La pantalla de Totales calcula automáticamente tu beneficio neto, el control del datáfono y las compañías pendientes.</p>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Totales.jpg" alt="Pantalla de totales" class="paso-img" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Resumen del día</span>
+        <h3>¿Qué muestra la pantalla?</h3>
+        <ul>
+          <li><strong>Bruto Total</strong> — suma de todos los servicios</li>
+          <li><strong>Descuentos aplicados</strong> — combustible y gastos extra</li>
+          <li><strong>Propinas Extras</strong> — total de propinas del turno</li>
+          <li><strong>Beneficio Neto</strong> — lo que te queda limpio</li>
+          <li><strong>Control Banco (Datáfono)</strong> — lo que debe ingresar el banco</li>
+          <li><strong>Control Compañías</strong> — vales pendientes de cobro</li>
+        </ul>
+        <div class="tip">
+          <span class="tip-icon">💡</span>
+          <p>Si eres asalariado verás además la <strong>Liquidación de Caja</strong> con tu parte y la del titular.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- SECCIÓN 5: COMPARTIR -->
+  <section class="seccion" id="compartir">
+    <div class="seccion-header">
+      <p class="seccion-numero">05 — Compartir resumen</p>
+      <h2>Envía el cierre por WhatsApp</h2>
+      <p class="seccion-desc">Con un solo toque puedes enviar el resumen completo del turno por WhatsApp al titular o a quien necesites.</p>
+    </div>
+
+    <div class="paso">
+      <div class="paso-img-wrap">
+        <img src="capturas/Compartido_Whatsapp.jpg" alt="Resumen WhatsApp" class="paso-img ancha" />
+      </div>
+      <div class="paso-content">
+        <span class="paso-badge">Compartir</span>
+        <h3>Resumen listo para enviar</h3>
+        <p>Desde la pantalla de Totales pulsa el botón verde <strong>Compartir por WhatsApp</strong>. Se generará automáticamente un mensaje con:</p>
+        <ul>
+          <li>Fecha del cierre</li>
+          <li>Bruto total y descuentos</li>
+          <li>Reparto entre titular y asalariado</li>
+          <li>Control banco y compañías</li>
+          <li>Liquidación de caja final</li>
+        </ul>
+        <div class="tip">
+          <span class="tip-icon">💬</span>
+          <p>El mensaje se abre directamente en WhatsApp listo para enviarlo. Solo tienes que elegir el contacto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÁS SECCIONES PRÓXIMAMENTE -->
+  <div style="max-width: 960px; margin: 0 auto 4rem; padding: 0 2rem;">
+    <div style="background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.15); border-radius: 20px; padding: 2.5rem; text-align: center;">
+      <p style="font-size: 1.5rem; margin-bottom: 0.75rem;">📖</p>
+      <h3 style="font-family: 'Syne', sans-serif; font-size: 1.2rem; margin-bottom: 0.5rem;">Más secciones próximamente</h3>
+      <p style="color: rgba(255,255,255,0.5); font-size: 0.9rem;">Reservas, Historial mensual y anual, Mantenimiento del vehículo, Dashboard titular y más.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/">Inicio</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/soporte.html">Soporte</a>
+      <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a>
+    </div>
+    <p class="footer-copy">© 2026 Taxi Driver Control · Todos los derechos reservados</p>
+  </footer>
+
+</body>
+</html>
