@@ -41,7 +41,7 @@
     h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-bottom: 1rem; }
     .section-sub { font-size: 1.05rem; color: rgba(255,255,255,0.5); max-width: 500px; margin-bottom: 3.5rem; }
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-    .feature-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radio); padding: 2rem; transition: border-color 0.2s, transform 0.2s; }
+    .feature-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radio); padding: 2rem; transition: border-color 0.2s, transform 0.2s; cursor: default; }
     .feature-card:hover { border-color: rgba(245,197,24,0.3); transform: translateY(-4px); }
     .feature-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
     .feature-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
@@ -83,10 +83,10 @@
 
   <nav>
     <a href="/" class="logo">🚖 <span>Taxi Driver Control</span></a>
-    <button class="hamburger" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menú">
+    <button class="hamburger" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-links">
+    <div class="nav-links" id="navlinks">
       <a href="#funciones" class="nav-link">Funciones</a>
       <a href="#registro" class="nav-link">Novedades</a>
       <a href="#descargar" class="nav-link">Descargar</a>
