@@ -89,9 +89,13 @@
       .paso { grid-template-columns: 1fr; gap: 2rem; }
       .paso.invertido { direction: ltr; }
       .paso-img-wrap { order: -1; }
-      .indice { grid-template-columns: 1fr 1fr; }
+      .indice { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+      .indice a { flex: 0 0 auto; width: calc(50% - 0.25rem); padding: 0.6rem 0.75rem; font-size: 0.8rem; }
+      .hero { padding: 6rem 1.5rem 2rem; }
     }
-    @media (max-width: 400px) { .indice { grid-template-columns: 1fr; } }
+    @media (max-width: 400px) {
+      .indice a { width: 100%; }
+    }
   </style>
 </head>
 <body>
