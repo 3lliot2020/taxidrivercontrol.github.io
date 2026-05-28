@@ -30,8 +30,25 @@
     .page-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 1rem; }
     h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; }
     .hero-sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; margin-bottom: 3rem; }
+    .indice-wrap {
+  max-width: 100%; margin: 0 0 4rem; padding: 0;
+  position: sticky; top: 100px; z-index: 90;
+  background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0.5rem 2rem;
+}
+    .indice-toggle {
+      display: none; width: 100%; padding: 0.85rem 1.2rem;
+      background: var(--gris); border: 1px solid var(--borde);
+      border-radius: 12px; color: rgba(255,255,255,0.8);
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      cursor: pointer; text-align: left; align-items: center;
+      transition: all 0.2s; margin-bottom: 0;
+    }
+    .indice-toggle:hover { border-color: rgba(245,197,24,0.4); color: var(--blanco); }
+    .indice-toggle .indice-arrow { float: right; transition: transform 0.3s; }
+    .indice-toggle[aria-expanded="true"] .indice-arrow { transform: rotate(180deg); }
     .indice {
-      max-width: 960px; margin: 0 auto 4rem; padding: 0 2rem;
       display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;
     }
     .indice a {
@@ -89,9 +106,11 @@
       .paso { grid-template-columns: 1fr; gap: 2rem; }
       .paso.invertido { direction: ltr; }
       .paso-img-wrap { order: -1; }
-      .indice { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-      .indice a { flex: 0 0 auto; width: calc(50% - 0.25rem); padding: 0.6rem 0.75rem; font-size: 0.8rem; }
       .hero { padding: 6rem 1.5rem 2rem; }
+      .indice-toggle { display: flex; }
+      .indice[hidden] { display: none !important; }
+      .indice:not([hidden]) { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+      .indice a { flex: 0 0 auto; width: calc(50% - 0.25rem); padding: 0.6rem 0.75rem; font-size: 0.8rem; }
     }
     @media (max-width: 400px) {
       .indice a { width: 100%; }
@@ -111,7 +130,9 @@
     <p class="hero-sub">Todo lo que necesitas saber para sacar el máximo partido a Taxi Driver Control, paso a paso.</p>
   </div>
 
-  <nav class="indice" aria-label="Índice">
+  <div class="indice-wrap">
+  <button class="indice-toggle" onclick="toggleIndice()" aria-expanded="false">📋 Índice de contenidos <span class="indice-arrow">▼</span></button>
+  <div class="indice" id="indice-menu" aria-label="Índice" hidden>
     <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
     <a href="#menu"><span class="emoji">📋</span> Menú principal</a>
     <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
@@ -124,7 +145,8 @@
     <a href="#mantenimiento"><span class="emoji">🔧</span> Mantenimiento</a>
     <a href="#ajustes"><span class="emoji">⚙️</span> Ajustes</a>
     <a href="#titular"><span class="emoji">👑</span> Titular</a>
-  </nav>
+  </div>
+  </div>
 
   <!-- 01 ACCESO -->
   <section class="seccion" id="acceso">
@@ -524,5 +546,26 @@
     <p class="footer-copy">© 2026 Taxi Driver Control · Todos los derechos reservados</p>
   </footer>
 
+  <script>
+    function toggleIndice() {
+      const menu = document.getElementById('indice-menu');
+      const btn = document.querySelector('.indice-toggle');
+      if (menu.hasAttribute('hidden')) {
+        menu.removeAttribute('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      } else {
+        menu.setAttribute('hidden', '');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+    document.querySelectorAll('.indice a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 680) {
+          document.getElementById('indice-menu').setAttribute('hidden', '');
+          document.querySelector('.indice-toggle').setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
