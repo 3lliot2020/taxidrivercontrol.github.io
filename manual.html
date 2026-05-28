@@ -12,9 +12,12 @@
     :root {
       --negro: #0a0a0a; --amarillo: #f5c518; --blanco: #ffffff;
       --radio: 16px; --gris: rgba(255,255,255,0.06); --borde: rgba(255,255,255,0.08);
+      --sidebar-width: 240px;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.7; }
+
+    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
@@ -26,41 +29,101 @@
     .logo span { color: var(--blanco); }
     nav a.back { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 100px; }
     nav a.back:hover { color: var(--blanco); background: rgba(255,255,255,0.1); }
+
+    /* HERO */
     .hero { padding: 8rem 2rem 4rem; text-align: center; max-width: 700px; margin: 0 auto; }
     .page-label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 1rem; }
     h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; }
     .hero-sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; margin-bottom: 3rem; }
+
+    /* LAYOUT CON SIDEBAR EN ESCRITORIO */
+    .manual-layout {
+      display: flex;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      gap: 3rem;
+    }
+
+    /* SIDEBAR ESCRITORIO */
+    .sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 1.5rem 0;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
+    .sidebar-title {
+      font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 1rem; padding: 0 0.75rem;
+    }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
+    .sidebar-nav a {
+      display: flex; align-items: center; gap: 10px;
+      padding: 0.55rem 0.75rem; border-radius: 10px;
+      text-decoration: none; color: rgba(255,255,255,0.5);
+      font-size: 0.85rem; transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .sidebar-nav a:hover {
+      color: var(--blanco);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.08);
+    }
+    .sidebar-nav a.active {
+      color: var(--amarillo);
+      background: rgba(245,197,24,0.08);
+      border-color: rgba(245,197,24,0.2);
+    }
+    .sidebar-nav a .emoji { font-size: 1rem; width: 20px; text-align: center; }
+
+    /* CONTENIDO PRINCIPAL */
+    .manual-content { flex: 1; min-width: 0; }
+
+    /* MOBILE: índice colapsable */
     .indice-wrap {
-  max-width: 100%; margin: 0 0 4rem; padding: 0;
-  position: sticky; top: 100px; z-index: 90;
-  background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-  padding: 0.5rem 2rem;
-}
+      display: none;
+      margin-bottom: 2rem;
+      position: sticky; top: 100px; z-index: 90;
+      background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 0.5rem 0;
+    }
     .indice-toggle {
-      display: none; width: 100%; padding: 0.85rem 1.2rem;
+      width: 100%; padding: 0.85rem 1.2rem;
       background: var(--gris); border: 1px solid var(--borde);
       border-radius: 12px; color: rgba(255,255,255,0.8);
       font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-      cursor: pointer; text-align: left; align-items: center;
-      transition: all 0.2s; margin-bottom: 0;
+      cursor: pointer; text-align: left; display: flex; align-items: center;
+      transition: all 0.2s;
     }
     .indice-toggle:hover { border-color: rgba(245,197,24,0.4); color: var(--blanco); }
-    .indice-toggle .indice-arrow { float: right; transition: transform 0.3s; }
+    .indice-toggle .indice-arrow { float: right; margin-left: auto; transition: transform 0.3s; }
     .indice-toggle[aria-expanded="true"] .indice-arrow { transform: rotate(180deg); }
-    .indice {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem;
+    .indice-menu[hidden] { display: none !important; }
+    .indice-menu {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; padding: 0 0.25rem;
     }
-    .indice a {
-      display: flex; align-items: center; gap: 10px;
+    .indice-menu a {
+      display: flex; align-items: center; gap: 8px;
       background: var(--gris); border: 1px solid var(--borde);
-      border-radius: 12px; padding: 0.75rem 1rem;
+      border-radius: 10px; padding: 0.6rem 0.75rem;
       text-decoration: none; color: rgba(255,255,255,0.7);
-      font-size: 0.85rem; transition: all 0.2s;
+      font-size: 0.8rem; transition: all 0.2s;
+      flex: 0 0 auto; width: calc(50% - 0.25rem);
     }
-    .indice a:hover { border-color: rgba(245,197,24,0.4); color: var(--blanco); background: rgba(245,197,24,0.06); }
-    .indice a .emoji { font-size: 1.1rem; }
-    .seccion { max-width: 960px; margin: 0 auto 5rem; padding: 0 2rem; scroll-margin-top: 80px; }
+    .indice-menu a:hover { border-color: rgba(245,197,24,0.4); color: var(--blanco); background: rgba(245,197,24,0.06); }
+
+    /* SECCIONES */
+    .seccion { margin-bottom: 5rem; scroll-margin-top: 90px; }
     .seccion-header { margin-bottom: 2.5rem; }
     .seccion-numero { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 0.5rem; }
     h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.5rem; }
@@ -96,24 +159,28 @@
     .tip-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
     .tip p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin: 0; }
     .tip.titular-tip { background: rgba(99,102,241,0.06); border-color: rgba(99,102,241,0.2); }
-    .divider { border: none; border-top: 1px solid var(--borde); margin: 4rem auto; max-width: 960px; }
+    .divider { border: none; border-top: 1px solid var(--borde); margin: 4rem 0; }
+
+    /* FOOTER */
     footer { border-top: 1px solid var(--borde); padding: 3rem 2rem; text-align: center; margin-top: 4rem; }
     .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--blanco); }
     .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.25); }
-    @media (max-width: 680px) {
+
+    /* RESPONSIVE */
+    @media (max-width: 860px) {
+      .sidebar { display: none; }
+      .indice-wrap { display: block; }
+      .manual-layout { padding: 0; gap: 0; }
+      .manual-content { padding: 0 1.5rem; }
+      .hero { padding: 6rem 1.5rem 2rem; }
       .paso { grid-template-columns: 1fr; gap: 2rem; }
       .paso.invertido { direction: ltr; }
       .paso-img-wrap { order: -1; }
-      .hero { padding: 6rem 1.5rem 2rem; }
-      .indice-toggle { display: flex; }
-      .indice[hidden] { display: none !important; }
-      .indice:not([hidden]) { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
-      .indice a { flex: 0 0 auto; width: calc(50% - 0.25rem); padding: 0.6rem 0.75rem; font-size: 0.8rem; }
     }
     @media (max-width: 400px) {
-      .indice a { width: 100%; }
+      .indice-menu a { width: 100%; }
     }
   </style>
 </head>
@@ -130,411 +197,440 @@
     <p class="hero-sub">Todo lo que necesitas saber para sacar el máximo partido a Taxi Driver Control, paso a paso.</p>
   </div>
 
+  <!-- ÍNDICE MÓVIL -->
   <div class="indice-wrap">
-  <button class="indice-toggle" onclick="toggleIndice()" aria-expanded="false">📋 Índice de contenidos <span class="indice-arrow">▼</span></button>
-  <div class="indice" id="indice-menu" aria-label="Índice" hidden>
-    <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
-    <a href="#menu"><span class="emoji">📋</span> Menú principal</a>
-    <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
-    <a href="#cerrar"><span class="emoji">🔒</span> Cerrar turno</a>
-    <a href="#totales"><span class="emoji">💰</span> Totales</a>
-    <a href="#compartir"><span class="emoji">💬</span> WhatsApp</a>
-    <a href="#reservas"><span class="emoji">📅</span> Reservas</a>
-    <a href="#historial"><span class="emoji">📆</span> Mi Mes</a>
-    <a href="#anual"><span class="emoji">📊</span> Mi Año</a>
-    <a href="#mantenimiento"><span class="emoji">🔧</span> Mantenimiento</a>
-    <a href="#ajustes"><span class="emoji">⚙️</span> Ajustes</a>
-    <a href="#titular"><span class="emoji">👑</span> Titular</a>
+    <button class="indice-toggle" onclick="toggleIndice()" aria-expanded="false">📋 Índice de contenidos <span class="indice-arrow">▼</span></button>
+    <div class="indice-menu" id="indice-menu" hidden>
+      <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
+      <a href="#menu"><span class="emoji">📋</span> Menú principal</a>
+      <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
+      <a href="#cerrar"><span class="emoji">🔒</span> Cerrar turno</a>
+      <a href="#totales"><span class="emoji">💰</span> Totales</a>
+      <a href="#compartir"><span class="emoji">💬</span> WhatsApp</a>
+      <a href="#reservas"><span class="emoji">📅</span> Reservas</a>
+      <a href="#historial"><span class="emoji">📆</span> Mi Mes</a>
+      <a href="#anual"><span class="emoji">📊</span> Mi Año</a>
+      <a href="#mantenimiento"><span class="emoji">🔧</span> Mantenimiento</a>
+      <a href="#ajustes"><span class="emoji">⚙️</span> Ajustes</a>
+      <a href="#titular"><span class="emoji">👑</span> Titular</a>
+    </div>
   </div>
-  </div>
 
-  <!-- 01 ACCESO -->
-  <section class="seccion" id="acceso">
-    <div class="seccion-header">
-      <p class="seccion-numero">01 — Acceso y registro</p>
-      <h2>Crea tu cuenta o inicia sesión</h2>
-      <p class="seccion-desc">El primer paso es crear tu cuenta. Solo necesitas nombre, email y contraseña.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Pantalla_login.jpg" alt="Pantalla de login" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Pantalla inicial</span>
-        <h3>Pantalla de acceso</h3>
-        <p>Al abrir la app por primera vez verás la pantalla de login. Si ya tienes cuenta introduce tu email y contraseña y pulsa <strong>Entrar</strong>.</p>
-        <p>Si es tu primera vez pulsa <strong>¿Eres nuevo? Regístrate aquí</strong>.</p>
-      </div>
-    </div>
-    <div class="paso invertido">
-      <div class="paso-img-wrap"><img src="capturas/Login_registro.jpg" alt="Formulario de registro" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Registro</span>
-        <h3>Crear cuenta nueva</h3>
-        <p>Rellena tu nombre completo, email y contraseña. Luego indica tu rol:</p>
-        <ul>
-          <li><strong>¿Eres Titular?</strong> — Actívalo si eres el propietario del taxi</li>
-          <li><strong>¿Tienes asalariados?</strong> — Actívalo si tienes conductores a tu cargo</li>
-        </ul>
-        <div class="tip"><span class="tip-icon">💡</span><p>Esta configuración determina qué pantallas y cálculos verás. Puedes cambiarla después en Ajustes.</p></div>
-      </div>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Login_inicio.jpg" alt="Login con cuenta" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Iniciar sesión</span>
-        <h3>Acceso con cuenta existente</h3>
-        <p>Introduce tu email y contraseña. La app recuerda tu sesión — no necesitarás volver a introducirlos salvo que cierres sesión manualmente.</p>
-        <div class="tip"><span class="tip-icon">🔒</span><p>Tu sesión se mantiene activa aunque cierres la app o el teléfono se quede sin batería.</p></div>
-      </div>
-    </div>
-  </section>
+  <!-- LAYOUT ESCRITORIO -->
+  <div class="manual-layout">
 
-  <hr class="divider" />
+    <!-- SIDEBAR ESCRITORIO -->
+    <aside class="sidebar">
+      <p class="sidebar-title">Contenidos</p>
+      <nav class="sidebar-nav">
+        <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
+        <a href="#menu"><span class="emoji">📋</span> Menú principal</a>
+        <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
+        <a href="#cerrar"><span class="emoji">🔒</span> Cerrar turno</a>
+        <a href="#totales"><span class="emoji">💰</span> Totales</a>
+        <a href="#compartir"><span class="emoji">💬</span> WhatsApp</a>
+        <a href="#reservas"><span class="emoji">📅</span> Reservas</a>
+        <a href="#historial"><span class="emoji">📆</span> Mi Mes</a>
+        <a href="#anual"><span class="emoji">📊</span> Mi Año</a>
+        <a href="#mantenimiento"><span class="emoji">🔧</span> Mantenimiento</a>
+        <a href="#ajustes"><span class="emoji">⚙️</span> Ajustes</a>
+        <a href="#titular"><span class="emoji">👑</span> Titular</a>
+      </nav>
+    </aside>
 
-  <!-- 02 MENÚ -->
-  <section class="seccion" id="menu">
-    <div class="seccion-header">
-      <p class="seccion-numero">02 — Menú principal</p>
-      <h2>Accede a todas las funciones</h2>
-      <p class="seccion-desc">Desde el Menú accedes a todas las secciones de la app. La pestaña Menú está siempre visible en la barra inferior.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Menu.jpg" alt="Menú principal" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Navegación</span>
-        <h3>Botones del menú</h3>
-        <p>Cada botón te lleva a una sección diferente de la app:</p>
-        <ul>
-          <li><strong>Dashboard</strong> — Resumen mensual de flota (titular)</li>
-          <li><strong>Mis Choferes</strong> — Gestión de conductores (titular)</li>
-          <li><strong>Mi Mes</strong> — Historial mensual con exportación</li>
-          <li><strong>Mi Año</strong> — Resumen anual de rendimiento</li>
-          <li><strong>Gastos Fijos</strong> — Registro de gastos recurrentes</li>
-          <li><strong>Mantenimiento</strong> — Control del vehículo</li>
-          <li><strong>Papelera</strong> — Servicios eliminados recuperables</li>
-          <li><strong>Ajustes</strong> — Configuración de la cuenta</li>
-        </ul>
-        <div class="tip titular-tip"><span class="tip-icon">👑</span><p>Dashboard, Mis Choferes y Gastos Fijos solo son visibles para usuarios con rol Titular.</p></div>
-      </div>
-    </div>
-  </section>
+    <!-- CONTENIDO -->
+    <div class="manual-content">
 
-  <hr class="divider" />
+      <!-- 01 ACCESO -->
+      <section class="seccion" id="acceso">
+        <div class="seccion-header">
+          <p class="seccion-numero">01 — Acceso y registro</p>
+          <h2>Crea tu cuenta o inicia sesión</h2>
+          <p class="seccion-desc">El primer paso es crear tu cuenta. Solo necesitas nombre, email y contraseña.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Pantalla_login.jpg" alt="Pantalla de login" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Pantalla inicial</span>
+            <h3>Pantalla de acceso</h3>
+            <p>Al abrir la app por primera vez verás la pantalla de login. Si ya tienes cuenta introduce tu email y contraseña y pulsa <strong>Entrar</strong>.</p>
+            <p>Si es tu primera vez pulsa <strong>¿Eres nuevo? Regístrate aquí</strong>.</p>
+          </div>
+        </div>
+        <div class="paso invertido">
+          <div class="paso-img-wrap"><img src="capturas/Login_registro.jpg" alt="Formulario de registro" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Registro</span>
+            <h3>Crear cuenta nueva</h3>
+            <p>Rellena tu nombre completo, email y contraseña. Luego indica tu rol:</p>
+            <ul>
+              <li><strong>¿Eres Titular?</strong> — Actívalo si eres el propietario del taxi</li>
+              <li><strong>¿Tienes asalariados?</strong> — Actívalo si tienes conductores a tu cargo</li>
+            </ul>
+            <div class="tip"><span class="tip-icon">💡</span><p>Esta configuración determina qué pantallas y cálculos verás. Puedes cambiarla después en Ajustes.</p></div>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Login_inicio.jpg" alt="Login con cuenta" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Iniciar sesión</span>
+            <h3>Acceso con cuenta existente</h3>
+            <p>Introduce tu email y contraseña. La app recuerda tu sesión — no necesitarás volver a introducirlos salvo que cierres sesión manualmente.</p>
+            <div class="tip"><span class="tip-icon">🔒</span><p>Tu sesión se mantiene activa aunque cierres la app o el teléfono se quede sin batería.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 03 SERVICIOS -->
-  <section class="seccion" id="servicios">
-    <div class="seccion-header">
-      <p class="seccion-numero">03 — Servicios</p>
-      <h2>Registra cada viaje del día</h2>
-      <p class="seccion-desc">La pantalla principal de la app. Aquí añades cada servicio según lo vas haciendo durante el turno.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Servicios_vacio.jpg" alt="Servicios vacío" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Al iniciar el turno</span>
-        <h3>Turno abierto, sin servicios</h3>
-        <p>Cuando abres un turno nuevo la lista aparece vacía y el contador marca <strong>€0.00</strong>. Pulsa <strong>+ NUEVO</strong> para añadir tu primer servicio.</p>
-        <div class="tip"><span class="tip-icon">💡</span><p>El botón <strong>CERRAR</strong> (rojo) cierra el turno al final del día. No lo pulses hasta terminar.</p></div>
-      </div>
-    </div>
-    <div class="paso invertido">
-      <div class="paso-img-wrap"><img src="capturas/Poner_importe.jpg" alt="Añadir servicio" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Añadir viaje</span>
-        <h3>Registrar un servicio</h3>
-        <p>Al pulsar <strong>+ NUEVO</strong> aparece el formulario de viaje. Introduce:</p>
-        <ul>
-          <li><strong>Importe €</strong> — lo que marca el taxímetro</li>
-          <li><strong>Propina €</strong> — si el cliente deja propina (opcional)</li>
-          <li><strong>Método de pago</strong> — Efectivo, Tarjeta o Compañía</li>
-        </ul>
-        <p>Si hay propina indica si es en tarjeta o efectivo. Pulsa <strong>Guardar</strong>.</p>
-      </div>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Servicios_completado.jpg" alt="Lista de servicios" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Durante el turno</span>
-        <h3>Lista de servicios del día</h3>
-        <p>Cada servicio aparece en la lista con su método de pago e importe. El contador superior muestra el <strong>total acumulado</strong> en tiempo real.</p>
-        <ul>
-          <li>En verde aparecen las propinas</li>
-          <li>Pulsa sobre cualquier servicio para editarlo o eliminarlo</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 02 MENÚ -->
+      <section class="seccion" id="menu">
+        <div class="seccion-header">
+          <p class="seccion-numero">02 — Menú principal</p>
+          <h2>Accede a todas las funciones</h2>
+          <p class="seccion-desc">Desde el Menú accedes a todas las secciones de la app. La pestaña Menú está siempre visible en la barra inferior.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Menu.jpg" alt="Menú principal" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Navegación</span>
+            <h3>Botones del menú</h3>
+            <p>Cada botón te lleva a una sección diferente de la app:</p>
+            <ul>
+              <li><strong>Dashboard</strong> — Resumen mensual de flota (titular)</li>
+              <li><strong>Mis Choferes</strong> — Gestión de conductores (titular)</li>
+              <li><strong>Mi Mes</strong> — Historial mensual con exportación</li>
+              <li><strong>Mi Año</strong> — Resumen anual de rendimiento</li>
+              <li><strong>Gastos Fijos</strong> — Registro de gastos recurrentes</li>
+              <li><strong>Mantenimiento</strong> — Control del vehículo</li>
+              <li><strong>Papelera</strong> — Servicios eliminados recuperables</li>
+              <li><strong>Ajustes</strong> — Configuración de la cuenta</li>
+            </ul>
+            <div class="tip titular-tip"><span class="tip-icon">👑</span><p>Dashboard, Mis Choferes y Gastos Fijos solo son visibles para usuarios con rol Titular.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 04 CERRAR TURNO -->
-  <section class="seccion" id="cerrar">
-    <div class="seccion-header">
-      <p class="seccion-numero">04 — Cerrar turno</p>
-      <h2>Finaliza el día y registra los gastos</h2>
-      <p class="seccion-desc">Al acabar la jornada cierra el turno indicando los kilómetros recorridos y los gastos del día.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Cerrar_Turno.jpg" alt="Cerrar turno" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Final del turno</span>
-        <h3>Formulario de cierre</h3>
-        <p>Al pulsar <strong>CERRAR</strong> aparece el formulario de cierre. Introduce:</p>
-        <ul>
-          <li><strong>KM totales</strong> — kilómetros recorridos en el turno</li>
-          <li><strong>Gasto Extra €</strong> — cualquier gasto adicional (parking, peaje...)</li>
-          <li><strong>Motivo</strong> — descripción del gasto extra (opcional)</li>
-        </ul>
-        <p>Pulsa <strong>Cerrar</strong> para confirmar. Los datos se guardan y se calculan los totales automáticamente.</p>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 03 SERVICIOS -->
+      <section class="seccion" id="servicios">
+        <div class="seccion-header">
+          <p class="seccion-numero">03 — Servicios</p>
+          <h2>Registra cada viaje del día</h2>
+          <p class="seccion-desc">La pantalla principal de la app. Aquí añades cada servicio según lo vas haciendo durante el turno.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Servicios_vacio.jpg" alt="Servicios vacío" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Al iniciar el turno</span>
+            <h3>Turno abierto, sin servicios</h3>
+            <p>Cuando abres un turno nuevo la lista aparece vacía y el contador marca <strong>€0.00</strong>. Pulsa <strong>+ NUEVO</strong> para añadir tu primer servicio.</p>
+            <div class="tip"><span class="tip-icon">💡</span><p>El botón <strong>CERRAR</strong> (rojo) cierra el turno al final del día. No lo pulses hasta terminar.</p></div>
+          </div>
+        </div>
+        <div class="paso invertido">
+          <div class="paso-img-wrap"><img src="capturas/Poner_importe.jpg" alt="Añadir servicio" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Añadir viaje</span>
+            <h3>Registrar un servicio</h3>
+            <p>Al pulsar <strong>+ NUEVO</strong> aparece el formulario de viaje. Introduce:</p>
+            <ul>
+              <li><strong>Importe €</strong> — lo que marca el taxímetro</li>
+              <li><strong>Propina €</strong> — si el cliente deja propina (opcional)</li>
+              <li><strong>Método de pago</strong> — Efectivo, Tarjeta o Compañía</li>
+            </ul>
+            <p>Si hay propina indica si es en tarjeta o efectivo. Pulsa <strong>Guardar</strong>.</p>
+          </div>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Servicios_completado.jpg" alt="Lista de servicios" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Durante el turno</span>
+            <h3>Lista de servicios del día</h3>
+            <p>Cada servicio aparece en la lista con su método de pago e importe. El contador superior muestra el <strong>total acumulado</strong> en tiempo real.</p>
+            <ul>
+              <li>En verde aparecen las propinas</li>
+              <li>Pulsa sobre cualquier servicio para editarlo o eliminarlo</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-  <!-- 05 TOTALES -->
-  <section class="seccion" id="totales">
-    <div class="seccion-header">
-      <p class="seccion-numero">05 — Totales</p>
-      <h2>El resumen financiero del turno</h2>
-      <p class="seccion-desc">La pantalla de Totales calcula automáticamente tu beneficio neto, el control del datáfono y las compañías pendientes.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Totales.jpg" alt="Pantalla de totales" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Resumen del día</span>
-        <h3>¿Qué muestra la pantalla?</h3>
-        <ul>
-          <li><strong>Bruto Total</strong> — suma de todos los servicios</li>
-          <li><strong>Descuentos aplicados</strong> — combustible y gastos extra</li>
-          <li><strong>Propinas Extras</strong> — total de propinas del turno</li>
-          <li><strong>Beneficio Neto</strong> — lo que te queda limpio</li>
-          <li><strong>Control Banco (Datáfono)</strong> — lo que debe ingresar el banco</li>
-          <li><strong>Control Compañías</strong> — vales pendientes de cobro</li>
-        </ul>
-        <div class="tip"><span class="tip-icon">💡</span><p>Si eres asalariado verás además la <strong>Liquidación de Caja</strong> con tu parte y la del titular.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 04 CERRAR TURNO -->
+      <section class="seccion" id="cerrar">
+        <div class="seccion-header">
+          <p class="seccion-numero">04 — Cerrar turno</p>
+          <h2>Finaliza el día y registra los gastos</h2>
+          <p class="seccion-desc">Al acabar la jornada cierra el turno indicando los kilómetros recorridos y los gastos del día.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Cerrar_Turno.jpg" alt="Cerrar turno" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Final del turno</span>
+            <h3>Formulario de cierre</h3>
+            <p>Al pulsar <strong>CERRAR</strong> aparece el formulario de cierre. Introduce:</p>
+            <ul>
+              <li><strong>KM totales</strong> — kilómetros recorridos en el turno</li>
+              <li><strong>Gasto Extra €</strong> — cualquier gasto adicional (parking, peaje...)</li>
+              <li><strong>Motivo</strong> — descripción del gasto extra (opcional)</li>
+            </ul>
+            <p>Pulsa <strong>Cerrar</strong> para confirmar. Los datos se guardan y se calculan los totales automáticamente.</p>
+          </div>
+        </div>
+      </section>
 
-  <!-- 06 WHATSAPP -->
-  <section class="seccion" id="compartir">
-    <div class="seccion-header">
-      <p class="seccion-numero">06 — Compartir por WhatsApp</p>
-      <h2>Envía el cierre en un toque</h2>
-      <p class="seccion-desc">Desde Totales puedes enviar el resumen completo del turno por WhatsApp al titular o a quien necesites.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Compartido_Whatsapp.jpg" alt="Resumen WhatsApp" class="paso-img ancha" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Compartir</span>
-        <h3>Resumen listo para enviar</h3>
-        <p>Pulsa el botón verde <strong>Compartir por WhatsApp</strong>. Se genera automáticamente un mensaje con:</p>
-        <ul>
-          <li>Fecha del cierre</li>
-          <li>Bruto total y descuentos</li>
-          <li>Reparto entre titular y asalariado</li>
-          <li>Control banco y compañías</li>
-          <li>Liquidación de caja final</li>
-        </ul>
-        <div class="tip"><span class="tip-icon">💬</span><p>El mensaje se abre directamente en WhatsApp. Solo tienes que elegir el contacto y enviarlo.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 05 TOTALES -->
+      <section class="seccion" id="totales">
+        <div class="seccion-header">
+          <p class="seccion-numero">05 — Totales</p>
+          <h2>El resumen financiero del turno</h2>
+          <p class="seccion-desc">La pantalla de Totales calcula automáticamente tu beneficio neto, el control del datáfono y las compañías pendientes.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Totales.jpg" alt="Pantalla de totales" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Resumen del día</span>
+            <h3>¿Qué muestra la pantalla?</h3>
+            <ul>
+              <li><strong>Bruto Total</strong> — suma de todos los servicios</li>
+              <li><strong>Descuentos aplicados</strong> — combustible y gastos extra</li>
+              <li><strong>Propinas Extras</strong> — total de propinas del turno</li>
+              <li><strong>Beneficio Neto</strong> — lo que te queda limpio</li>
+              <li><strong>Control Banco (Datáfono)</strong> — lo que debe ingresar el banco</li>
+              <li><strong>Control Compañías</strong> — vales pendientes de cobro</li>
+            </ul>
+            <div class="tip"><span class="tip-icon">💡</span><p>Si eres asalariado verás además la <strong>Liquidación de Caja</strong> con tu parte y la del titular.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 07 RESERVAS -->
-  <section class="seccion" id="reservas">
-    <div class="seccion-header">
-      <p class="seccion-numero">07 — Reservas</p>
-      <h2>Gestiona tus servicios programados</h2>
-      <p class="seccion-desc">Añade reservas con antelación y recibe una notificación 30 minutos antes de cada recogida.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Calendario.jpg" alt="Calendario de reservas" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Calendario</span>
-        <h3>Vista del calendario</h3>
-        <p>El calendario muestra todos los meses. Los días con reservas aparecen marcados con un punto azul. Los fines de semana y festivos aparecen en rojo.</p>
-        <p>Pulsa sobre cualquier día para ver las reservas desde esa fecha. Pulsa <strong>+ AÑADIR</strong> para crear una nueva.</p>
-        <div class="tip"><span class="tip-icon">📅</span><p>La agenda muestra todos los servicios programados desde la fecha seleccionada hacia adelante.</p></div>
-      </div>
-    </div>
-    <div class="paso invertido">
-      <div class="paso-img-wrap"><img src="capturas/Añadir_reserva.jpg" alt="Añadir reserva" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Nueva reserva</span>
-        <h3>Crear una reserva</h3>
-        <p>Rellena todos los campos:</p>
-        <ul>
-          <li><strong>Cliente</strong> — nombre del pasajero</li>
-          <li><strong>Fecha</strong> — en formato AAAA-MM-DD</li>
-          <li><strong>Hora</strong> — en formato HH:mm</li>
-          <li><strong>Origen</strong> — punto de recogida</li>
-          <li><strong>Destino</strong> — punto de llegada</li>
-        </ul>
-        <div class="tip"><span class="tip-icon">🔔</span><p>La app te enviará una notificación push <strong>30 minutos antes</strong> de la hora de recogida.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 06 WHATSAPP -->
+      <section class="seccion" id="compartir">
+        <div class="seccion-header">
+          <p class="seccion-numero">06 — Compartir por WhatsApp</p>
+          <h2>Envía el cierre en un toque</h2>
+          <p class="seccion-desc">Desde Totales puedes enviar el resumen completo del turno por WhatsApp al titular o a quien necesites.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Compartido_Whatsapp.jpg" alt="Resumen WhatsApp" class="paso-img ancha" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Compartir</span>
+            <h3>Resumen listo para enviar</h3>
+            <p>Pulsa el botón verde <strong>Compartir por WhatsApp</strong>. Se genera automáticamente un mensaje con:</p>
+            <ul>
+              <li>Fecha del cierre</li>
+              <li>Bruto total y descuentos</li>
+              <li>Reparto entre titular y asalariado</li>
+              <li>Control banco y compañías</li>
+              <li>Liquidación de caja final</li>
+            </ul>
+            <div class="tip"><span class="tip-icon">💬</span><p>El mensaje se abre directamente en WhatsApp. Solo tienes que elegir el contacto y enviarlo.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 08 MI MES -->
-  <section class="seccion" id="historial">
-    <div class="seccion-header">
-      <p class="seccion-numero">08 — Mi Mes</p>
-      <h2>Historial mensual con exportación</h2>
-      <p class="seccion-desc">Consulta todos tus turnos del mes y exporta un informe en PDF o Excel.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/MiMes.jpg" alt="Historial mensual" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Historial</span>
-        <h3>Resumen mensual</h3>
-        <p>Muestra el resumen del mes actual con el total del taxímetro, propinas y beneficio neto. Usa el selector para cambiar de mes.</p>
-        <ul>
-          <li><strong>PDF</strong> — genera un informe detallado por turno listo para compartir</li>
-          <li><strong>Excel</strong> — exporta los datos en formato hoja de cálculo</li>
-        </ul>
-        <div class="tip"><span class="tip-icon">📄</span><p>Los informes PDF incluyen el desglose completo de cada turno con fechas, importes y liquidación.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 07 RESERVAS -->
+      <section class="seccion" id="reservas">
+        <div class="seccion-header">
+          <p class="seccion-numero">07 — Reservas</p>
+          <h2>Gestiona tus servicios programados</h2>
+          <p class="seccion-desc">Añade reservas con antelación y recibe una notificación 30 minutos antes de cada recogida.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Calendario.jpg" alt="Calendario de reservas" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Calendario</span>
+            <h3>Vista del calendario</h3>
+            <p>El calendario muestra todos los meses. Los días con reservas aparecen marcados con un punto azul. Los fines de semana y festivos aparecen en rojo.</p>
+            <p>Pulsa sobre cualquier día para ver las reservas desde esa fecha. Pulsa <strong>+ AÑADIR</strong> para crear una nueva.</p>
+            <div class="tip"><span class="tip-icon">📅</span><p>La agenda muestra todos los servicios programados desde la fecha seleccionada hacia adelante.</p></div>
+          </div>
+        </div>
+        <div class="paso invertido">
+          <div class="paso-img-wrap"><img src="capturas/Añadir_reserva.jpg" alt="Añadir reserva" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Nueva reserva</span>
+            <h3>Crear una reserva</h3>
+            <p>Rellena todos los campos:</p>
+            <ul>
+              <li><strong>Cliente</strong> — nombre del pasajero</li>
+              <li><strong>Fecha</strong> — en formato AAAA-MM-DD</li>
+              <li><strong>Hora</strong> — en formato HH:mm</li>
+              <li><strong>Origen</strong> — punto de recogida</li>
+              <li><strong>Destino</strong> — punto de llegada</li>
+            </ul>
+            <div class="tip"><span class="tip-icon">🔔</span><p>La app te enviará una notificación push <strong>30 minutos antes</strong> de la hora de recogida.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 09 MI AÑO -->
-  <section class="seccion" id="anual">
-    <div class="seccion-header">
-      <p class="seccion-numero">09 — Mi Año</p>
-      <h2>Visión global del rendimiento anual</h2>
-      <p class="seccion-desc">Un resumen completo de todo el año con el beneficio neto total, kilómetros y combustible.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/MiAño.jpg" alt="Resumen anual" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Anual</span>
-        <h3>Desglose anual de flota</h3>
-        <p>Muestra el beneficio neto anual total incluyendo:</p>
-        <ul>
-          <li><strong>Bruto Taxímetro Flota</strong> — suma de todos los servicios del año</li>
-          <li><strong>Mis Propinas Extras</strong> — total de propinas anuales</li>
-          <li><strong>Combustible Flota</strong> — gasto total en combustible</li>
-          <li><strong>Distancia Recorrida</strong> — kilómetros totales del año</li>
-        </ul>
-        <div class="tip titular-tip"><span class="tip-icon">👑</span><p>Para titulares con asalariados el beneficio neto incluye el 100% del rendimiento propio más el 50% de la base de caja de los asalariados.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 08 MI MES -->
+      <section class="seccion" id="historial">
+        <div class="seccion-header">
+          <p class="seccion-numero">08 — Mi Mes</p>
+          <h2>Historial mensual con exportación</h2>
+          <p class="seccion-desc">Consulta todos tus turnos del mes y exporta un informe en PDF o Excel.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/MiMes.jpg" alt="Historial mensual" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Historial</span>
+            <h3>Resumen mensual</h3>
+            <p>Muestra el resumen del mes actual con el total del taxímetro, propinas y beneficio neto. Usa el selector para cambiar de mes.</p>
+            <ul>
+              <li><strong>PDF</strong> — genera un informe detallado por turno listo para compartir</li>
+              <li><strong>Excel</strong> — exporta los datos en formato hoja de cálculo</li>
+            </ul>
+            <div class="tip"><span class="tip-icon">📄</span><p>Los informes PDF incluyen el desglose completo de cada turno con fechas, importes y liquidación.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 10 MANTENIMIENTO -->
-  <section class="seccion" id="mantenimiento">
-    <div class="seccion-header">
-      <p class="seccion-numero">10 — Mantenimiento</p>
-      <h2>Control del vehículo</h2>
-      <p class="seccion-desc">Lleva un registro completo de todas las intervenciones del vehículo con fechas, kilómetros y próximas revisiones.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Mantenimiento.jpg" alt="Lista de mantenimiento" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Lista de registros</span>
-        <h3>Historial de intervenciones</h3>
-        <p>Cada registro muestra el tipo de trabajo, la fecha y los kilómetros en el momento de la intervención. Si hay una próxima revisión programada aparece en verde.</p>
-        <ul>
-          <li>✏️ — Editar el registro</li>
-          <li>🗑️ — Eliminar el registro</li>
-          <li>⚠️ — Alerta activa (aparece con borde naranja)</li>
-        </ul>
-      </div>
-    </div>
-    <div class="paso invertido">
-      <div class="paso-img-wrap"><img src="capturas/Añadir_Mantenimiento.jpg" alt="Añadir mantenimiento" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Nuevo registro</span>
-        <h3>Añadir una intervención</h3>
-        <p>Pulsa <strong>+ Añadir</strong> y rellena los datos:</p>
-        <ul>
-          <li><strong>Fecha</strong> — en formato DD-MM-AAAA</li>
-          <li><strong>Km en la intervención</strong> — kilómetros del coche en ese momento</li>
-          <li><strong>Tipo de trabajo</strong> — selecciona una sugerencia o escribe el tuyo</li>
-          <li><strong>Descripción</strong> — detalles opcionales</li>
-          <li><strong>Próxima intervención</strong> — fecha y/o kilómetros (opcional)</li>
-          <li><strong>Activar alerta</strong> — resalta el registro en la lista</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 09 MI AÑO -->
+      <section class="seccion" id="anual">
+        <div class="seccion-header">
+          <p class="seccion-numero">09 — Mi Año</p>
+          <h2>Visión global del rendimiento anual</h2>
+          <p class="seccion-desc">Un resumen completo de todo el año con el beneficio neto total, kilómetros y combustible.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/MiAño.jpg" alt="Resumen anual" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Anual</span>
+            <h3>Desglose anual de flota</h3>
+            <p>Muestra el beneficio neto anual total incluyendo:</p>
+            <ul>
+              <li><strong>Bruto Taxímetro Flota</strong> — suma de todos los servicios del año</li>
+              <li><strong>Mis Propinas Extras</strong> — total de propinas anuales</li>
+              <li><strong>Combustible Flota</strong> — gasto total en combustible</li>
+              <li><strong>Distancia Recorrida</strong> — kilómetros totales del año</li>
+            </ul>
+            <div class="tip titular-tip"><span class="tip-icon">👑</span><p>Para titulares con asalariados el beneficio neto incluye el 100% del rendimiento propio más el 50% de la base de caja de los asalariados.</p></div>
+          </div>
+        </div>
+      </section>
 
-  <!-- 11 AJUSTES -->
-  <section class="seccion" id="ajustes">
-    <div class="seccion-header">
-      <p class="seccion-numero">11 — Ajustes</p>
-      <h2>Configura la app a tu medida</h2>
-      <p class="seccion-desc">Personaliza los cálculos y el comportamiento de la app según tu situación.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Ajustes.jpg" alt="Pantalla de ajustes" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge">Configuración</span>
-        <h3>Opciones disponibles</h3>
-        <ul>
-          <li><strong>Precio combustible €/KM</strong> — coste por kilómetro para calcular el gasto de combustible automáticamente</li>
-          <li><strong>% Asalariado</strong> — porcentaje del reparto para el conductor asalariado (por defecto 50%)</li>
-          <li><strong>¿Descontar combustible?</strong> — si está activo, el combustible se descuenta antes del reparto</li>
-          <li><strong>Cobros por Compañías</strong> — activa el botón "Compañía" en la pantalla de Servicios</li>
-          <li><strong>Contabilidad Avanzada</strong> — muestra el Beneficio Neto Real restando los Gastos Fijos</li>
-          <li><strong>Modo Noche</strong> — activa el tema oscuro</li>
-        </ul>
-        <div class="tip"><span class="tip-icon">⏰</span><p>Pulsa en <strong>Jornada desde las...</strong> para cambiar la hora de inicio del turno. Por defecto es las 04:00 de la madrugada.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
 
-  <hr class="divider" />
+      <!-- 10 MANTENIMIENTO -->
+      <section class="seccion" id="mantenimiento">
+        <div class="seccion-header">
+          <p class="seccion-numero">10 — Mantenimiento</p>
+          <h2>Control del vehículo</h2>
+          <p class="seccion-desc">Lleva un registro completo de todas las intervenciones del vehículo con fechas, kilómetros y próximas revisiones.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Mantenimiento.jpg" alt="Lista de mantenimiento" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Lista de registros</span>
+            <h3>Historial de intervenciones</h3>
+            <p>Cada registro muestra el tipo de trabajo, la fecha y los kilómetros en el momento de la intervención. Si hay una próxima revisión programada aparece en verde.</p>
+            <ul>
+              <li>✏️ — Editar el registro</li>
+              <li>🗑️ — Eliminar el registro</li>
+              <li>⚠️ — Alerta activa (aparece con borde naranja)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="paso invertido">
+          <div class="paso-img-wrap"><img src="capturas/Añadir_Mantenimiento.jpg" alt="Añadir mantenimiento" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Nuevo registro</span>
+            <h3>Añadir una intervención</h3>
+            <p>Pulsa <strong>+ Añadir</strong> y rellena los datos:</p>
+            <ul>
+              <li><strong>Fecha</strong> — en formato DD-MM-AAAA</li>
+              <li><strong>Km en la intervención</strong> — kilómetros del coche en ese momento</li>
+              <li><strong>Tipo de trabajo</strong> — selecciona una sugerencia o escribe el tuyo</li>
+              <li><strong>Descripción</strong> — detalles opcionales</li>
+              <li><strong>Próxima intervención</strong> — fecha y/o kilómetros (opcional)</li>
+              <li><strong>Activar alerta</strong> — resalta el registro en la lista</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-  <!-- 12 TITULAR -->
-  <section class="seccion" id="titular">
-    <div class="seccion-header">
-      <p class="seccion-numero">12 — Solo para titulares</p>
-      <h2>Gestión de flota y conductores</h2>
-      <p class="seccion-desc">Funciones exclusivas para titulares con asalariados a su cargo.</p>
-    </div>
-    <div class="paso">
-      <div class="paso-img-wrap"><img src="capturas/Dashboard_titular.jpg" alt="Dashboard titular" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge titular">Solo titular</span>
-        <h3>Dashboard de flota</h3>
-        <p>El Dashboard muestra el resumen mensual de toda la flota:</p>
-        <ul>
-          <li><strong>Mi Balance</strong> — bruto total, gastos y base de caja del mes</li>
-          <li><strong>Mi Rendimiento</strong> — rendimiento de cada conductor con viajes y total</li>
-          <li><strong>Total Rendimiento</strong> — suma de todos los conductores</li>
-        </ul>
-        <p>Pulsa sobre cualquier conductor para ver su auditoría detallada turno por turno con opción de exportar en PDF o Excel.</p>
-      </div>
-    </div>
-    <div class="paso invertido">
-      <div class="paso-img-wrap"><img src="capturas/Gestion_choferes.jpg" alt="Gestión de choferes" class="paso-img" /></div>
-      <div class="paso-content">
-        <span class="paso-badge titular">Solo titular</span>
-        <h3>Vincular conductores</h3>
-        <p>Desde <strong>Mis Choferes</strong> puedes vincular a tus conductores asalariados:</p>
-        <ul>
-          <li>El conductor debe haberse registrado previamente en la app con su email</li>
-          <li>Introduce el email del conductor y pulsa <strong>Vincular</strong></li>
-          <li>A partir de ese momento verás sus turnos en el Dashboard</li>
-        </ul>
-        <div class="tip titular-tip"><span class="tip-icon">👑</span><p>Una vez vinculado el conductor podrá ver sus propios datos y tú tendrás acceso a la auditoría completa de su actividad.</p></div>
-      </div>
-    </div>
-  </section>
+      <hr class="divider" />
+
+      <!-- 11 AJUSTES -->
+      <section class="seccion" id="ajustes">
+        <div class="seccion-header">
+          <p class="seccion-numero">11 — Ajustes</p>
+          <h2>Configura la app a tu medida</h2>
+          <p class="seccion-desc">Personaliza los cálculos y el comportamiento de la app según tu situación.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Ajustes.jpg" alt="Pantalla de ajustes" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge">Configuración</span>
+            <h3>Opciones disponibles</h3>
+            <ul>
+              <li><strong>Precio combustible €/KM</strong> — coste por kilómetro para calcular el gasto de combustible automáticamente</li>
+              <li><strong>% Asalariado</strong> — porcentaje del reparto para el conductor asalariado (por defecto 50%)</li>
+              <li><strong>¿Descontar combustible?</strong> — si está activo, el combustible se descuenta antes del reparto</li>
+              <li><strong>Cobros por Compañías</strong> — activa el botón "Compañía" en la pantalla de Servicios</li>
+              <li><strong>Contabilidad Avanzada</strong> — muestra el Beneficio Neto Real restando los Gastos Fijos</li>
+              <li><strong>Modo Noche</strong> — activa el tema oscuro</li>
+            </ul>
+            <div class="tip"><span class="tip-icon">⏰</span><p>Pulsa en <strong>Jornada desde las...</strong> para cambiar la hora de inicio del turno. Por defecto es las 04:00 de la madrugada.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 12 TITULAR -->
+      <section class="seccion" id="titular">
+        <div class="seccion-header">
+          <p class="seccion-numero">12 — Solo para titulares</p>
+          <h2>Gestión de flota y conductores</h2>
+          <p class="seccion-desc">Funciones exclusivas para titulares con asalariados a su cargo.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-img-wrap"><img src="capturas/Dashboard_titular.jpg" alt="Dashboard titular" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge titular">Solo titular</span>
+            <h3>Dashboard de flota</h3>
+            <p>El Dashboard muestra el resumen mensual de toda la flota:</p>
+            <ul>
+              <li><strong>Mi Balance</strong> — bruto total, gastos y base de caja del mes</li>
+              <li><strong>Mi Rendimiento</strong> — rendimiento de cada conductor con viajes y total</li>
+              <li><strong>Total Rendimiento</strong> — suma de todos los conductores</li>
+            </ul>
+            <p>Pulsa sobre cualquier conductor para ver su auditoría detallada turno por turno con opción de exportar en PDF o Excel.</p>
+          </div>
+        </div>
+        <div class="paso invertido">
+          <div class="paso-img-wrap"><img src="capturas/Gestion_choferes.jpg" alt="Gestión de choferes" class="paso-img" /></div>
+          <div class="paso-content">
+            <span class="paso-badge titular">Solo titular</span>
+            <h3>Vincular conductores</h3>
+            <p>Desde <strong>Mis Choferes</strong> puedes vincular a tus conductores asalariados:</p>
+            <ul>
+              <li>El conductor debe haberse registrado previamente en la app con su email</li>
+              <li>Introduce el email del conductor y pulsa <strong>Vincular</strong></li>
+              <li>A partir de ese momento verás sus turnos en el Dashboard</li>
+            </ul>
+            <div class="tip titular-tip"><span class="tip-icon">👑</span><p>Una vez vinculado el conductor podrá ver sus propios datos y tú tendrás acceso a la auditoría completa de su actividad.</p></div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- fin manual-content -->
+  </div><!-- fin manual-layout -->
 
   <footer>
     <div class="footer-links">
@@ -558,14 +654,30 @@
         btn.setAttribute('aria-expanded', 'false');
       }
     }
-    document.querySelectorAll('.indice a').forEach(a => {
+
+    // Cerrar índice móvil al pulsar enlace
+    document.querySelectorAll('.indice-menu a').forEach(a => {
       a.addEventListener('click', () => {
-        if (window.innerWidth <= 680) {
+        if (window.innerWidth <= 860) {
           document.getElementById('indice-menu').setAttribute('hidden', '');
           document.querySelector('.indice-toggle').setAttribute('aria-expanded', 'false');
         }
       });
     });
+
+    // Resaltar sección activa en sidebar
+    const sections = document.querySelectorAll('.seccion');
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          sidebarLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => observer.observe(s));
   </script>
 </body>
 </html>
