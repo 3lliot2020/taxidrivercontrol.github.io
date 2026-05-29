@@ -118,6 +118,19 @@
       .nav-links a { padding: 1rem 1.5rem; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
       .por-taxistas, .beta-card { padding: 2.5rem 1.5rem; margin: 0 1rem; }
     }
+    .reviews-section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+.reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+.review-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--radio); padding: 1.5rem; transition: transform 0.2s, border-color 0.2s; }
+.review-card:hover { border-color: rgba(245,197,24,0.3); transform: translateY(-4px); }
+.review-stars { color: var(--amarillo); font-size: 1rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
+.review-text { color: rgba(255,255,255,0.85); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem; font-style: italic; }
+.review-meta { display: flex; align-items: center; gap: 0.8rem; }
+.review-avatar { width: 32px; height: 32px; background: rgba(245,197,24,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: var(--amarillo); font-weight: 700; flex-shrink: 0; }
+.review-author { font-weight: 600; color: var(--blanco); font-size: 0.9rem; }
+.review-role { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
+.review-date { margin-left: auto; font-size: 0.75rem; color: rgba(255,255,255,0.35); }
+.review-cta { text-align: center; margin-top: 2.5rem; }
+    
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-44CJNMQ6ED"></script>
   <script>
@@ -193,6 +206,48 @@
         <article class="testimonial"><p class="testimonial-text">"El cierre de turno en 30 segundos me ahorra tiempo cada día. Y es gratis, ¿qué más se puede pedir?"</p><footer><span class="testimonial-author">Javier L.</span> <span class="testimonial-role">· Taxista, Valencia</span></footer></article>
       </div>
     </section>
+    <section class="reviews-section" id="resenas">
+  <p class="section-label" style="text-align:center">Reseñas</p>
+  <h2 style="text-align:center; margin-bottom:1rem">Lo que opinan los taxistas</h2>
+  <p style="text-align:center; color:rgba(255,255,255,0.6); margin-bottom:2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Feedback real de nuestra comunidad en fase beta. Tu opinión nos ayuda a pulir la app.</p>
+  
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Llevo 3 semanas en beta y ya no vuelvo a las notas de papel. El cierre de turno en 30 segundos es brutal."</p>
+      <div class="review-meta">
+        <div class="review-avatar">CM</div>
+        <div><div class="review-author">Carlos M.</div><div class="review-role">Madrid</div></div>
+        <span class="review-date">Hace 5 días</span>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Funciona sin cobertura en mi zona y al volver se sincroniza sola. Justo lo que necesitaba para no perder servicios."</p>
+      <div class="review-meta">
+        <div class="review-avatar">AR</div>
+        <div><div class="review-author">Ana R.</div><div class="review-role">Barcelona</div></div>
+        <span class="review-date">Hace 1 semana</span>
+      </div>
+    </div>
+
+    <div class="review-card">
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">"Muy limpia y directa. Le falta aún exportar a PDF, pero el control de turnos y reservas es 10/10."</p>
+      <div class="review-meta">
+        <div class="review-avatar">JL</div>
+        <div><div class="review-author">Javier L.</div><div class="review-role">Valencia</div></div>
+        <span class="review-date">Hace 2 semanas</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="review-cta">
+    <p style="color:rgba(255,255,255,0.6); margin-bottom:1rem;">¿Eres beta tester? Tu opinión nos ayuda a mejorar</p>
+    <a href="mailto:contacto@taxidrivercontrol.com?subject=Reseña%20Beta%20-%20Taxi%20Driver%20Control&body=Hola,%20quiero%20compartir%20mi%20experiencia%20con%20la%20app..." class="btn-secondary">✍️ Enviar mi opinión</a>
+  </div>
+</section>
 
     <section class="registro-section" id="registro">
   <p class="section-label">Novedades</p>
