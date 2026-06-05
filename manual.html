@@ -12,7 +12,6 @@
     :root {
       --negro: #0a0a0a; --amarillo: #f5c518; --blanco: #ffffff;
       --radio: 16px; --gris: rgba(255,255,255,0.06); --borde: rgba(255,255,255,0.08);
-      --sidebar-width: 240px;
     }
     html { scroll-behavior: smooth; }
     body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.7; }
@@ -36,61 +35,18 @@
     h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; }
     .hero-sub { color: rgba(255,255,255,0.5); font-size: 1.05rem; margin-bottom: 3rem; }
 
-    /* LAYOUT CON SIDEBAR EN ESCRITORIO */
+    /* LAYOUT UNIFICADO ESCRITORIO Y MÓVIL */
     .manual-layout {
-      display: flex;
-      align-items: flex-start;
-      max-width: 1200px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 0 2rem;
-      gap: 3rem;
     }
-
-    /* SIDEBAR ESCRITORIO */
-    .sidebar {
-      width: var(--sidebar-width);
-      flex-shrink: 0;
-      position: sticky;
-      top: 80px;
-      max-height: calc(100vh - 100px);
-      overflow-y: auto;
-      padding: 1.5rem 0;
-      scrollbar-width: thin;
-      scrollbar-color: rgba(255,255,255,0.1) transparent;
-    }
-    .sidebar::-webkit-scrollbar { width: 4px; }
-    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 4px; }
-    .sidebar-title {
-      font-family: 'Syne', sans-serif; font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: rgba(255,255,255,0.3); margin-bottom: 1rem; padding: 0 0.75rem;
-    }
-    .sidebar-nav { display: flex; flex-direction: column; gap: 2px; }
-    .sidebar-nav a {
-      display: flex; align-items: center; gap: 10px;
-      padding: 0.55rem 0.75rem; border-radius: 10px;
-      text-decoration: none; color: rgba(255,255,255,0.5);
-      font-size: 0.85rem; transition: all 0.2s;
-      border: 1px solid transparent;
-    }
-    .sidebar-nav a:hover {
-      color: var(--blanco);
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255,255,255,0.08);
-    }
-    .sidebar-nav a.active {
-      color: var(--amarillo);
-      background: rgba(245,197,24,0.08);
-      border-color: rgba(245,197,24,0.2);
-    }
-    .sidebar-nav a .emoji { font-size: 1rem; width: 20px; text-align: center; }
 
     /* CONTENIDO PRINCIPAL */
     .manual-content { flex: 1; min-width: 0; }
 
-    /* MOBILE: índice colapsable */
+    /* ÍNDICE DESPLEGABLE Y PEGAJOSO */
     .indice-wrap {
-      display: none;
       margin-bottom: 2rem;
       position: sticky; top: 100px; z-index: 90;
       background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
@@ -123,7 +79,7 @@
     .indice-menu a:hover { border-color: rgba(245,197,24,0.4); color: var(--blanco); background: rgba(245,197,24,0.06); }
 
     /* SECCIONES */
-    .seccion { margin-bottom: 5rem; scroll-margin-top: 90px; }
+    .seccion { margin-bottom: 5rem; scroll-margin-top: 150px; }
     .seccion-header { margin-bottom: 2.5rem; }
     .seccion-numero { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 0.5rem; }
     h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.5rem; }
@@ -170,8 +126,6 @@
 
     /* RESPONSIVE */
     @media (max-width: 860px) {
-      .sidebar { display: none; }
-      .indice-wrap { display: block; }
       .manual-layout { padding: 0; gap: 0; }
       .manual-content { padding: 0 1.5rem; }
       .hero { padding: 6rem 1.5rem 2rem; }
@@ -197,32 +151,11 @@
     <p class="hero-sub">Todo lo que necesitas saber para sacar el máximo partido a Taxi Driver Control, paso a paso.</p>
   </div>
 
-  <!-- ÍNDICE MÓVIL -->
-  <div class="indice-wrap">
-    <button class="indice-toggle" onclick="toggleIndice()" aria-expanded="false">📋 Índice de contenidos <span class="indice-arrow">▼</span></button>
-    <div class="indice-menu" id="indice-menu" hidden>
-      <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
-      <a href="#menu"><span class="emoji">📋</span> Menú principal</a>
-      <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
-      <a href="#cerrar"><span class="emoji">🔒</span> Cerrar turno</a>
-      <a href="#totales"><span class="emoji">💰</span> Totales</a>
-      <a href="#compartir"><span class="emoji">💬</span> WhatsApp</a>
-      <a href="#reservas"><span class="emoji">📅</span> Reservas</a>
-      <a href="#historial"><span class="emoji">📆</span> Mi Mes</a>
-      <a href="#anual"><span class="emoji">📊</span> Mi Año</a>
-      <a href="#mantenimiento"><span class="emoji">🔧</span> Mantenimiento</a>
-      <a href="#ajustes"><span class="emoji">⚙️</span> Ajustes</a>
-      <a href="#titular"><span class="emoji">👑</span> Titular</a>
-    </div>
-  </div>
-
-  <!-- LAYOUT ESCRITORIO -->
   <div class="manual-layout">
 
-    <!-- SIDEBAR ESCRITORIO -->
-    <aside class="sidebar">
-      <p class="sidebar-title">Contenidos</p>
-      <nav class="sidebar-nav">
+    <div class="indice-wrap">
+      <button class="indice-toggle" onclick="toggleIndice()" aria-expanded="false">📋 Índice de contenidos <span class="indice-arrow">▼</span></button>
+      <div class="indice-menu" id="indice-menu" hidden>
         <a href="#acceso"><span class="emoji">🔐</span> Acceso y registro</a>
         <a href="#menu"><span class="emoji">📋</span> Menú principal</a>
         <a href="#servicios"><span class="emoji">🚕</span> Servicios</a>
@@ -235,13 +168,11 @@
         <a href="#mantenimiento"><span class="emoji">🔧</span> Mantenimiento</a>
         <a href="#ajustes"><span class="emoji">⚙️</span> Ajustes</a>
         <a href="#titular"><span class="emoji">👑</span> Titular</a>
-      </nav>
-    </aside>
+      </div>
+    </div>
 
-    <!-- CONTENIDO -->
     <div class="manual-content">
 
-      <!-- 01 ACCESO -->
       <section class="seccion" id="acceso">
         <div class="seccion-header">
           <p class="seccion-numero">01 — Acceso y registro</p>
@@ -283,7 +214,6 @@
 
       <hr class="divider" />
 
-      <!-- 02 MENÚ -->
       <section class="seccion" id="menu">
         <div class="seccion-header">
           <p class="seccion-numero">02 — Menú principal</p>
@@ -313,7 +243,6 @@
 
       <hr class="divider" />
 
-      <!-- 03 SERVICIOS -->
       <section class="seccion" id="servicios">
         <div class="seccion-header">
           <p class="seccion-numero">03 — Servicios</p>
@@ -359,7 +288,6 @@
 
       <hr class="divider" />
 
-      <!-- 04 CERRAR TURNO -->
       <section class="seccion" id="cerrar">
         <div class="seccion-header">
           <p class="seccion-numero">04 — Cerrar turno</p>
@@ -384,7 +312,6 @@
 
       <hr class="divider" />
 
-      <!-- 05 TOTALES -->
       <section class="seccion" id="totales">
         <div class="seccion-header">
           <p class="seccion-numero">05 — Totales</p>
@@ -411,7 +338,6 @@
 
       <hr class="divider" />
 
-      <!-- 06 WHATSAPP -->
       <section class="seccion" id="compartir">
         <div class="seccion-header">
           <p class="seccion-numero">06 — Compartir por WhatsApp</p>
@@ -438,7 +364,6 @@
 
       <hr class="divider" />
 
-      <!-- 07 RESERVAS -->
       <section class="seccion" id="reservas">
         <div class="seccion-header">
           <p class="seccion-numero">07 — Reservas</p>
@@ -475,7 +400,6 @@
 
       <hr class="divider" />
 
-      <!-- 08 MI MES -->
       <section class="seccion" id="historial">
         <div class="seccion-header">
           <p class="seccion-numero">08 — Mi Mes</p>
@@ -499,7 +423,6 @@
 
       <hr class="divider" />
 
-      <!-- 09 MI AÑO -->
       <section class="seccion" id="anual">
         <div class="seccion-header">
           <p class="seccion-numero">09 — Mi Año</p>
@@ -525,7 +448,6 @@
 
       <hr class="divider" />
 
-      <!-- 10 MANTENIMIENTO -->
       <section class="seccion" id="mantenimiento">
         <div class="seccion-header">
           <p class="seccion-numero">10 — Mantenimiento</p>
@@ -565,7 +487,6 @@
 
       <hr class="divider" />
 
-      <!-- 11 AJUSTES -->
       <section class="seccion" id="ajustes">
         <div class="seccion-header">
           <p class="seccion-numero">11 — Ajustes</p>
@@ -592,7 +513,6 @@
 
       <hr class="divider" />
 
-      <!-- 12 TITULAR -->
       <section class="seccion" id="titular">
         <div class="seccion-header">
           <p class="seccion-numero">12 — Solo para titulares</p>
@@ -629,10 +549,7 @@
         </div>
       </section>
 
-    </div><!-- fin manual-content -->
-  </div><!-- fin manual-layout -->
-
-  <footer>
+    </div></div><footer>
     <div class="footer-links">
       <a href="/">Inicio</a>
       <a href="/privacidad.html">Privacidad</a>
@@ -655,29 +572,13 @@
       }
     }
 
-    // Cerrar índice móvil al pulsar enlace
+    // Cerrar índice al pulsar enlace en cualquier dispositivo
     document.querySelectorAll('.indice-menu a').forEach(a => {
       a.addEventListener('click', () => {
-        if (window.innerWidth <= 860) {
-          document.getElementById('indice-menu').setAttribute('hidden', '');
-          document.querySelector('.indice-toggle').setAttribute('aria-expanded', 'false');
-        }
+        document.getElementById('indice-menu').setAttribute('hidden', '');
+        document.querySelector('.indice-toggle').setAttribute('aria-expanded', 'false');
       });
     });
-
-    // Resaltar sección activa en sidebar
-    const sections = document.querySelectorAll('.seccion');
-    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          sidebarLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
-          });
-        }
-      });
-    }, { rootMargin: '-20% 0px -70% 0px' });
-    sections.forEach(s => observer.observe(s));
   </script>
 </body>
 </html>
