@@ -36,7 +36,7 @@
     h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.5rem; max-width: 800px; }
     h1 em { font-style: normal; color: var(--amarillo); }
     .hero-sub { font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.7); max-width: 520px; margin-bottom: 3rem; }
-    .botones { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .botones { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; align-items: center; }
     .btn-primary { background: var(--amarillo); color: var(--negro); font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 1rem; padding: 0.9rem 2rem; border-radius: 100px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; display: inline-flex; align-items: center; gap: 8px; }
     .btn-primary:hover, .btn-primary:focus { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.3); outline: none; }
     .btn-secondary { background: rgba(255,255,255,0.07); color: var(--blanco); font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1rem; padding: 0.9rem 2rem; border-radius: 100px; text-decoration: none; border: 1px solid rgba(255,255,255,0.12); transition: background 0.15s; display: inline-flex; align-items: center; gap: 8px; }
@@ -74,10 +74,6 @@
     #sib-container .sib-form-block__button:hover { transform: translateY(-2px) !important; }
     #sib-container .sib-form-block p { color: rgba(255,255,255,0.7) !important; font-family: 'DM Sans', sans-serif !important; }
     .sib-form-block p:first-child { display: none; }
-    .beta-card { background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.2); border-radius: 24px; padding: 4rem 3rem; text-align: center; max-width: 800px; margin: 0 auto; }
-    .beta-features { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
-    .beta-feature { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.7); font-size: 0.9rem; }
-    .beta-feature span { color: var(--amarillo); font-weight: 700; }
     .faq { max-width: 700px; margin: 3rem auto 0; }
     .faq details { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1rem 1.5rem; margin-bottom: 0.75rem; transition: border-color 0.2s; }
     .faq details:hover { border-color: rgba(245,197,24,0.3); }
@@ -87,13 +83,27 @@
     .faq details[open] summary::before { transform: rotate(90deg); }
     .faq p { margin-top: 0.75rem; color: rgba(255,255,255,0.7); line-height: 1.6; }
     .download-section { text-align: center; padding: 6rem 2rem; }
-    .store-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
-    .store-btn { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 0.9rem 1.8rem; text-decoration: none; color: var(--blanco); opacity: 0.6; cursor: not-allowed; }
+    .store-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; align-items: center; }
+    /* Badge App Store con filo amarillo */
+    .badge-appstore {
+      display: inline-block;
+      border-radius: 12px;
+      border: 2px solid var(--amarillo);
+      overflow: hidden;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .badge-appstore:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,197,24,0.25);
+    }
+    .badge-appstore img { display: block; height: 52px; }
+    /* Badge Google Play próximamente */
+    .store-btn { display: inline-flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 14px; padding: 0.9rem 1.8rem; text-decoration: none; color: var(--blanco); opacity: 0.5; cursor: not-allowed; }
     .store-btn-icon { font-size: 1.8rem; }
     .store-btn-text { text-align: left; }
     .store-btn-sub { font-size: 0.7rem; color: rgba(255,255,255,0.5); display: block; }
     .store-btn-name { font-size: 1rem; font-weight: 500; }
-    .proximamente { font-size: 0.75rem; color: var(--amarillo); margin-top: 0.5rem; display: block; }
+    .proximamente { font-size: 0.75rem; color: var(--amarillo); margin-top: 1rem; display: block; }
     footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 3rem 2rem; text-align: center; }
     .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
@@ -107,7 +117,7 @@
       .nav-links { display: none !important; position: fixed; top: 57px; left: 0; right: 0; background: rgba(10,10,10,0.97); backdrop-filter: blur(12px); flex-direction: column; gap: 0; padding: 0.5rem 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 99; }
       .nav-links.open { display: flex !important; }
       .nav-links a { padding: 1rem 1.5rem; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-      .por-taxistas, .beta-card { padding: 2.5rem 1.5rem; margin: 0 1rem; }
+      .por-taxistas { padding: 2.5rem 1.5rem; margin: 0 1rem; }
     }
     .reviews-section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
     .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
@@ -141,7 +151,6 @@
       <a href="#funciones" class="nav-link">Funciones</a>
       <a href="#testimonios" class="nav-link">Opiniones</a>
       <a href="#registro" class="nav-link">Novedades</a>
-      <a href="#beta" class="nav-link">Beta</a>
       <a href="#descargar" class="nav-link">Descargar</a>
       <a href="/manual.html" class="nav-link">Manual</a>
       <a href="mailto:contacto@taxidrivercontrol.com" class="nav-link">Contacto</a>
@@ -155,12 +164,14 @@
       <h1>El control total de<br/><em>tu negocio</em> al volante</h1>
       <p class="hero-sub">Registra servicios, gestiona turnos, analiza tus ingresos y lleva tu taxi como el profesional que eres.</p>
       <div class="botones">
-        <a href="#beta" class="btn-primary">🧪 Unirme a la Beta</a>
+        <a href="https://apps.apple.com/es/app/taxi-driver-control/id6779477395" class="badge-appstore" target="_blank" aria-label="Descargar en el App Store">
+          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Disponible en el App Store" />
+        </a>
         <a href="#funciones" class="btn-secondary">Ver funciones →</a>
       </div>
       <div class="stats">
         <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Gratuita</div></div>
-        <div class="stat"><div class="stat-num">iOS & Android</div><div class="stat-label">Próximamente</div></div>
+        <div class="stat"><div class="stat-num">iOS & Android</div><div class="stat-label">Ya disponible</div></div>
         <div class="stat"><div class="stat-num">📵 Offline</div><div class="stat-label">+ Sync automático</div></div>
       </div>
     </section>
@@ -173,7 +184,7 @@
         <div class="feature-card"><span class="feature-icon" aria-hidden="true">📋</span><div class="feature-title">Registro de servicios</div><div class="feature-desc">Anota cada viaje en segundos: importe, propina y método de pago. Sin complicaciones.</div></div>
         <div class="feature-card"><span class="feature-icon" aria-hidden="true">🔒</span><div class="feature-title">Cierre de turno</div><div class="feature-desc">Cierra y abre turnos con un toque. Registra kilómetros, combustible y gastos extra.</div></div>
         <div class="feature-card"><span class="feature-icon" aria-hidden="true">📆</span><div class="feature-title">Mi Mes & Mi Año</div><div class="feature-desc">Visualiza tus ingresos por día, semana y mes. Entiende cómo evoluciona tu negocio.</div></div>
-        <div class="feature-card"><span class="feature-icon" aria-hidden="true">📵</span><div class="feature-title">Trabaja sin conexión</div><div class="feature-desc">¿Sin cobertura? Registra servicios normalmente. Tu app los guarda en cola y <strong>los sincroniza con Supabase automáticamente</strong> en cuanto recuperes conexión. Sin perder datos, sin acción manual.</div></div>
+        <div class="feature-card"><span class="feature-icon" aria-hidden="true">📵</span><div class="feature-title">Trabaja sin conexión</div><div class="feature-desc">¿Sin cobertura? Registra servicios normalmente. Tu app los guarda en cola y <strong>los sincroniza automáticamente</strong> en cuanto recuperes conexión. Sin perder datos, sin acción manual.</div></div>
         <div class="feature-card"><span class="feature-icon" aria-hidden="true">📅</span><div class="feature-title">Reservas</div><div class="feature-desc">Gestiona tus reservas anticipadas y no pierdas ningún servicio programado.</div></div>
         <div class="feature-card"><span class="feature-icon" aria-hidden="true">🔧</span><div class="feature-title">Mantenimiento</div><div class="feature-desc">Lleva el control de las revisiones y el mantenimiento de tu vehículo en un solo lugar.</div></div>
       </div>
@@ -187,14 +198,14 @@
       </div>
     </div>
 
-    <section class="reviews-section" id="resenas">
+    <section class="reviews-section" id="testimonios">
       <p class="section-label" style="text-align:center">Reseñas</p>
       <h2 style="text-align:center; margin-bottom:1rem">Lo que opinan los taxistas</h2>
-      <p style="text-align:center; color:rgba(255,255,255,0.6); margin-bottom:2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Feedback real de nuestra comunidad en fase beta. Tu opinión nos ayuda a pulir la app.</p>
+      <p style="text-align:center; color:rgba(255,255,255,0.6); margin-bottom:2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Feedback real de nuestra comunidad. Tu opinión nos ayuda a mejorar.</p>
       <div class="reviews-grid">
         <div class="review-card">
           <div class="review-stars">★★★★★</div>
-          <p class="review-text">"Llevo 3 semanas en beta y ya no vuelvo a las notas de papel. El cierre de turno en 30 segundos es brutal."</p>
+          <p class="review-text">"Llevo 3 semanas usándola y ya no vuelvo a las notas de papel. El cierre de turno en 30 segundos es brutal."</p>
           <div class="review-meta">
             <div class="review-avatar">CM</div>
             <div><div class="review-author">Carlos M.</div><div class="review-role">Madrid</div></div>
@@ -212,7 +223,7 @@
         </div>
         <div class="review-card">
           <div class="review-stars">★★★★☆</div>
-          <p class="review-text">"Muy limpia y directa. Le falta aún exportar a PDF, pero el control de turnos y reservas es 10/10."</p>
+          <p class="review-text">"Muy limpia y directa. El control de turnos y reservas es 10/10."</p>
           <div class="review-meta">
             <div class="review-avatar">JL</div>
             <div><div class="review-author">Javier L.</div><div class="review-role">Valencia</div></div>
@@ -221,8 +232,8 @@
         </div>
       </div>
       <div class="review-cta">
-        <p style="color:rgba(255,255,255,0.6); margin-bottom:1rem;">¿Eres beta tester? Tu opinión nos ayuda a mejorar</p>
-        <a href="mailto:contacto@taxidrivercontrol.com?subject=Reseña%20Beta%20-%20Taxi%20Driver%20Control&body=Hola,%20quiero%20compartir%20mi%20experiencia%20con%20la%20app..." class="btn-secondary">✍️ Enviar mi opinión</a>
+        <p style="color:rgba(255,255,255,0.6); margin-bottom:1.5rem;">¿Ya usas Taxi Driver Control? Tu reseña ayuda a otros taxistas a descubrirla 🙌</p>
+        <a href="https://apps.apple.com/es/app/taxi-driver-control/id6779477395?action=write-review" target="_blank" class="btn-primary" style="margin-right: 0.5rem;">⭐ Dejar reseña en App Store</a>
       </div>
     </section>
 
@@ -267,54 +278,6 @@
       </p>
     </section>
 
-    <!-- SECCIÓN BETA CON MODAL -->
-    <section class="section" id="beta" style="padding-top: 0;">
-      <div class="beta-card">
-        <div class="badge" style="margin: 0 auto 1.5rem;">🧪 Beta abierta — plazas limitadas</div>
-        <h2 style="margin-bottom: 1rem;">Sé beta tester de<br/><em style="color: var(--amarillo);">Taxi Driver Control</em></h2>
-        <p style="color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 560px; margin: 0 auto 1.5rem;">Antes del lanzamiento oficial en Google Play necesitamos taxistas que prueben la app durante <strong style="color: white;">14 días</strong>. Solo necesitas un Android y mantener la app instalada.</p>
-        <div class="beta-features">
-          <div class="beta-feature"><span>✓</span> Solo Android</div>
-          <div class="beta-feature"><span>✓</span> 14 días instalada</div>
-          <div class="beta-feature"><span>✓</span> Completamente gratis</div>
-          <div class="beta-feature"><span>✓</span> Sin uso activo requerido</div>
-        </div>
-        <button onclick="abrirModalBeta()" class="btn-primary" style="font-size: 1rem; border: none; cursor: pointer;">📩 Apuntarme como beta tester</button>
-        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 1rem; font-weight: 500;">📬 Te enviaremos el enlace de descarga en tu email</p>
-      </div>
-    </section>
-
-    <!-- MODAL BETA -->
-    <div id="modal-beta" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:999; align-items:center; justify-content:center; padding:1rem;">
-      <div style="background:#1a1a1a; border:1px solid rgba(245,197,24,0.3); border-radius:20px; padding:2.5rem; max-width:460px; width:100%; position:relative;">
-        <button onclick="cerrarModalBeta()" style="position:absolute; top:1rem; right:1rem; background:none; border:none; color:rgba(255,255,255,0.5); font-size:1.4rem; cursor:pointer; line-height:1;">✕</button>
-        <div style="text-align:center; margin-bottom:1.5rem;">
-          <div style="font-size:2.5rem; margin-bottom:0.5rem;">🚖</div>
-          <h3 style="font-family:'Syne',sans-serif; font-size:1.4rem; font-weight:700; margin-bottom:0.5rem;">Únete a la beta</h3>
-          <p style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Introduce tu email de Google (Gmail) y te añadiremos a la lista de testers. Recibirás el enlace de descarga en los próximos minutos.</p>
-        </div>
-        <div id="beta-form">
-          <input
-            type="email"
-            id="beta-email"
-            placeholder="tucorreo@gmail.com"
-            style="width:100%; padding:0.85rem 1rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:10px; color:white; font-size:1rem; font-family:'DM Sans',sans-serif; margin-bottom:0.75rem; outline:none;"
-            onfocus="this.style.borderColor='#f5c518'"
-            onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
-          />
-          <p style="color:rgba(255,255,255,0.45); font-size:0.8rem; margin-bottom:1.2rem;">📬 Revisa también tu carpeta de spam si no ves el email en unos minutos.</p>
-          <button onclick="enviarSolicitudBeta()" id="beta-btn" style="width:100%; padding:0.9rem; background:#f5c518; color:#0a0a0a; font-weight:700; font-size:1rem; border:none; border-radius:100px; cursor:pointer; font-family:'DM Sans',sans-serif; transition:transform 0.15s;">
-            Solicitar acceso a la beta
-          </button>
-        </div>
-        <div id="beta-ok" style="display:none; text-align:center; padding:1rem 0;">
-          <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
-          <h3 style="font-family:'Syne',sans-serif; font-size:1.3rem; margin-bottom:0.5rem;">¡Solicitud recibida!</h3>
-          <p style="color:rgba(255,255,255,0.6); font-size:0.9rem;">Te añadiremos a la lista y recibirás el enlace de descarga en tu email. Revisa también la carpeta de spam.</p>
-        </div>
-      </div>
-    </div>
-
     <section class="section" style="padding-top: 0;">
       <p class="section-label" style="text-align:center">Preguntas frecuentes</p>
       <h2 style="text-align:center; margin-bottom:2rem">¿Alguna duda?</h2>
@@ -325,22 +288,18 @@
           <summary>¿Mis datos están seguros?</summary>
           <p>Sí. No vendemos ni compartimos tus datos, tienes control total: puedes <strong>exportar tus datos</strong> en cualquier momento, <strong>importarlos</strong> si cambias de dispositivo, y <strong>eliminar tu cuenta y todos tus datos</strong> de forma definitiva y automática desde la configuración.</p>
         </details>
-        <details><summary>¿Cuándo estará en las tiendas?</summary><p>Estamos en fase beta. El lanzamiento en Google Play está previsto para <strong>finales de junio 2026</strong>. iOS llegará en julio.</p></details>
+        <details><summary>¿Cuándo estará en Google Play?</summary><p>Taxi Driver Control ya está disponible en el <strong>App Store</strong>. Google Play estará disponible en unos días.</p></details>
       </div>
     </section>
 
     <section class="download-section" id="descargar">
       <p class="section-label">Descarga</p>
-      <h2>Disponible próximamente<br/>en las tiendas</h2>
-      <p style="color:rgba(255,255,255,0.7); margin-top:0.5rem;">Gratis. Únete a la beta y pruébala antes que nadie.</p>
+      <h2>Descarga ya<br/>Taxi Driver Control</h2>
+      <p style="color:rgba(255,255,255,0.7); margin-top:0.5rem;">Gratis. Disponible ahora en el App Store.</p>
       <div class="store-buttons">
-        <div class="store-btn" role="link" aria-disabled="true">
-          <span class="store-btn-icon" aria-hidden="true">🍎</span>
-          <div class="store-btn-text">
-            <span class="store-btn-sub">Próximamente en</span>
-            <span class="store-btn-name">App Store</span>
-          </div>
-        </div>
+        <a href="https://apps.apple.com/es/app/taxi-driver-control/id6779477395" target="_blank" class="badge-appstore" aria-label="Descargar en el App Store">
+          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Disponible en el App Store" />
+        </a>
         <div class="store-btn" role="link" aria-disabled="true">
           <span class="store-btn-icon" aria-hidden="true">🤖</span>
           <div class="store-btn-text">
@@ -349,7 +308,7 @@
           </div>
         </div>
       </div>
-      <span class="proximamente">🚀 Android: Finales de junio 2026 · iOS: Julio 2026</span>
+      <span class="proximamente">✅ iOS ya disponible · ⏳ Android próximamente</span>
     </section>
   </main>
 
@@ -364,9 +323,6 @@
   </footer>
 
   <script>
-    const BREVO_API_KEY = ['xkeysib-3bb5b55406156c74565687e0b8af3270060e8fe581a5f2483cd2cee50057f3a4-', '4WFGCvqeIcvD3ewx'].join('');
-
-    // ── Hamburger ─────────────────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
       const hamburger = document.getElementById('hamburger');
       const navLinks = document.getElementById('navlinks');
@@ -392,105 +348,6 @@
         });
       }
     });
-
-    // ── Modal Beta ────────────────────────────────────────────────────────────
-    function abrirModalBeta() {
-      const modal = document.getElementById('modal-beta');
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      setTimeout(() => document.getElementById('beta-email').focus(), 100);
-    }
-
-    function cerrarModalBeta() {
-      document.getElementById('modal-beta').style.display = 'none';
-      document.body.style.overflow = '';
-      document.getElementById('beta-form').style.display = 'block';
-      document.getElementById('beta-ok').style.display = 'none';
-      document.getElementById('beta-email').value = '';
-      const btn = document.getElementById('beta-btn');
-      btn.textContent = 'Solicitar acceso a la beta';
-      btn.disabled = false;
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') cerrarModalBeta();
-    });
-
-    document.getElementById('modal-beta').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('modal-beta')) cerrarModalBeta();
-    });
-
-    async function enviarSolicitudBeta() {
-      const email = document.getElementById('beta-email').value.trim();
-      const btn = document.getElementById('beta-btn');
-
-      if (!email || !email.includes('@')) {
-        document.getElementById('beta-email').style.borderColor = '#ff4949';
-        document.getElementById('beta-email').focus();
-        return;
-      }
-
-      btn.textContent = 'Enviando...';
-      btn.disabled = true;
-
-      try {
-        // 1. Notificación al administrador PRIMERO
-        await fetch('https://api.brevo.com/v3/smtp/email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'api-key': BREVO_API_KEY
-          },
-          body: JSON.stringify({
-            to: [{ email: 'taxidrivercontrol2026@gmail.com' }],
-            sender: {
-              name: 'Taxi Driver Control',
-              email: 'contacto@taxidrivercontrol.com'
-            },
-            subject: '🚖 Nueva solicitud de beta tester',
-            htmlContent: '<p style="font-family:Arial,sans-serif;font-size:16px;">Nuevo tester apuntado:</p><p style="font-family:Arial,sans-serif;font-size:18px;font-weight:bold;color:#0066cc;">' + email + '</p><p style="font-family:Arial,sans-serif;font-size:14px;color:#666;">Recuerda añadirlo a Google Play Console para que pueda descargar la app.</p><p><a href="https://play.google.com/console" style="background:#f5c518;color:#000;padding:10px 20px;border-radius:20px;text-decoration:none;font-weight:bold;">Abrir Google Play Console</a></p>'
-          })
-        });
-
-        // 2. Añadir a lista de solicitudes beta en Brevo (lista ID 3)
-        await fetch('https://api.brevo.com/v3/contacts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'api-key': BREVO_API_KEY
-          },
-          body: JSON.stringify({
-            email: email,
-            listIds: [3],
-            updateEnabled: true
-          })
-        });
-
-        // 3. Email de confirmación al solicitante con plantilla #5
-        await fetch('https://api.brevo.com/v3/smtp/email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'api-key': BREVO_API_KEY
-          },
-          body: JSON.stringify({
-            to: [{ email: email }],
-            templateId: 5,
-            sender: {
-              name: 'Taxi Driver Control',
-              email: 'contacto@taxidrivercontrol.com'
-            }
-          })
-        });
-
-      } catch(e) {
-        console.log('Error Brevo:', e);
-      }
-
-      // Mostrar confirmación siempre aunque Brevo falle
-      document.getElementById('beta-form').style.display = 'none';
-      document.getElementById('beta-ok').style.display = 'block';
-    }
   </script>
 </body>
 </html>
