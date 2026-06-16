@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inicio rápido — Taxi Driver Control</title>
+  <meta name="description" content="Empieza a usar Taxi Driver Control en menos de 5 minutos. Guía de configuración inicial paso a paso." />
+  <link rel="canonical" href="https://taxidrivercontrol.com/inicio-rapido.html" />
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --negro: #0a0a0a; --amarillo: #f5c518; --blanco: #ffffff; --radio: 16px; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--negro); color: var(--blanco); line-height: 1.6; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(10,10,10,0.85); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--amarillo); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo span { color: var(--blanco); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    nav a.nav-link { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    nav a.nav-link:hover { color: var(--blanco); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; flex-shrink: 0; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--blanco); margin: 5px 0; border-radius: 2px; }
+    .hero { padding: 8rem 2rem 4rem; text-align: center; max-width: 800px; margin: 0 auto; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(245,197,24,0.12); border: 1px solid rgba(245,197,24,0.3); color: var(--amarillo); font-size: 0.8rem; font-weight: 500; padding: 6px 14px; border-radius: 100px; margin-bottom: 1.5rem; }
+    h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 1rem; }
+    h1 em { font-style: normal; color: var(--amarillo); }
+    .hero-sub { color: rgba(255,255,255,0.7); font-size: 1.1rem; max-width: 520px; margin: 0 auto; }
+    .steps { max-width: 720px; margin: 4rem auto; padding: 0 2rem 6rem; }
+    .step { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; position: relative; }
+    .step:not(:last-child)::after { content: ''; position: absolute; left: 22px; top: 56px; bottom: -2.5rem; width: 2px; background: rgba(245,197,24,0.2); }
+    .step-num { flex-shrink: 0; width: 46px; height: 46px; background: var(--amarillo); color: var(--negro); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; }
+    .step-content { padding-top: 8px; }
+    .step-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; margin-bottom: 0.4rem; color: var(--blanco); }
+    .step-desc { color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.7; }
+    .step-desc strong { color: var(--blanco); }
+    .step-tip { display: inline-flex; align-items: flex-start; gap: 8px; background: rgba(245,197,24,0.08); border: 1px solid rgba(245,197,24,0.2); border-radius: 10px; padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .step-tip span { color: var(--amarillo); font-size: 1rem; flex-shrink: 0; }
+    .cta { text-align: center; padding: 0 2rem 6rem; }
+    .cta-card { background: rgba(245,197,24,0.06); border: 1px solid rgba(245,197,24,0.2); border-radius: 24px; padding: 3rem 2rem; max-width: 600px; margin: 0 auto; }
+    .cta-card h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.8rem; margin-bottom: 1rem; }
+    .cta-card p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; }
+    .badge-appstore { display: inline-block; border-radius: 12px; border: 2px solid var(--amarillo); overflow: hidden; transition: transform 0.15s, box-shadow 0.15s; }
+    .badge-appstore:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,197,24,0.25); }
+    .badge-appstore img { display: block; height: 52px; }
+    .btn-secondary { background: rgba(255,255,255,0.07); color: var(--blanco); font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1rem; padding: 0.9rem 2rem; border-radius: 100px; text-decoration: none; border: 1px solid rgba(255,255,255,0.12); transition: background 0.15s; display: inline-flex; align-items: center; gap: 8px; margin-top: 1rem; }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); }
+    footer { border-top: 1px solid rgba(255,255,255,0.07); padding: 3rem 2rem; text-align: center; }
+    .footer-links { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--blanco); }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+    @media (max-width: 700px) {
+      nav { padding: 0.9rem 1.2rem; }
+      .hamburger { display: block; }
+      .nav-links { display: none !important; position: fixed; top: 57px; left: 0; right: 0; background: rgba(10,10,10,0.97); backdrop-filter: blur(12px); flex-direction: column; gap: 0; padding: 0.5rem 0 1rem; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 99; }
+      .nav-links.open { display: flex !important; }
+      .nav-links a { padding: 1rem 1.5rem; font-size: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">🚖 <span>Taxi Driver Control</span></a>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navlinks">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navlinks">
+      <a href="/#funciones" class="nav-link">Funciones</a>
+      <a href="/#testimonios" class="nav-link">Opiniones</a>
+      <a href="/#descargar" class="nav-link">Descargar</a>
+      <a href="/manual.html" class="nav-link">Manual</a>
+      <a href="mailto:contacto@taxidrivercontrol.com" class="nav-link">Contacto</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <div class="badge">⚡ En menos de 5 minutos</div>
+      <h1>Empieza a usar<br/><em>Taxi Driver Control</em></h1>
+      <p class="hero-sub">Sigue estos pasos y tendrás la app lista para tu próximo turno.</p>
+    </div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Regístrate con tu email</div>
+          <div class="step-desc">
+            Descarga la app, pulsa <strong>Registrarse</strong> e introduce tu email y una contraseña. Recibirás un correo de confirmación — pulsa el enlace para activar tu cuenta.
+            <br/><br/>
+            <div class="step-tip"><span>📬</span> Si no ves el email en unos minutos, revisa la carpeta de <strong>spam</strong> o correo no deseado y márcalo como "No es spam".</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Indica tu rol</div>
+          <div class="step-desc">
+            Al registrarte elige si eres <strong>Titular</strong> (propietario del vehículo) o <strong>Asalariado</strong> (conductor contratado). Esto ajusta los cálculos y las pantallas que verás.
+            <br/><br/>
+            <div class="step-tip"><span>💡</span> Si eres titular y tienes conductores a cargo, activa la opción <strong>"¿Tienes asalariados?"</strong> para poder vincularlos después.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Configura tu hora de inicio de jornada</div>
+          <div class="step-desc">
+            Ve a <strong>Menú → Ajustes</strong> y pulsa sobre tu perfil para cambiar la hora de inicio. Esta hora define cuándo empieza un nuevo turno — si trabajas de noche configúrala a las 22:00, si trabajas de día ponla a las 06:00 o 07:00.
+            <br/><br/>
+            <div class="step-tip"><span>⏰</span> Si no la configuras, la app usará las <strong>06:00</strong> por defecto.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">Pon el precio del km de combustible</div>
+          <div class="step-desc">
+            En <strong>Ajustes</strong> introduce el coste por kilómetro de combustible de tu vehículo. La app lo usará para calcular automáticamente el gasto de combustible al cerrar cada turno.
+            <br/><br/>
+            <div class="step-tip"><span>⛽</span> No sabes el precio exacto por km? Divide lo que gastas en un depósito entre los km que haces con él. Por ejemplo: 60€ / 600km = <strong>0,10 €/km</strong>.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <div class="step-title">Apunta tu primer servicio</div>
+          <div class="step-desc">
+            Ve a la pantalla de <strong>Servicios</strong> y pulsa el botón <strong>NUEVO</strong>. Introduce el importe, la propina si la hay y el método de pago. El teclado aparece automáticamente para que sea lo más rápido posible.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <div class="step-title">Cierra el turno al acabar el día</div>
+          <div class="step-desc">
+            Al terminar tu jornada pulsa <strong>CERRAR</strong> en la pantalla de Servicios. Introduce los kilómetros totales del turno y si has tenido algún gasto extra. La app calculará el combustible automáticamente.
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <div class="step-title">Consulta tus totales y compártelos</div>
+          <div class="step-desc">
+            En la pantalla de <strong>Totales</strong> verás el resumen completo del turno: bruto, gastos, beneficio neto y desglose por método de pago. Puedes compartirlo directamente por <strong>WhatsApp</strong> con un toque.
+            <br/><br/>
+            <div class="step-tip"><span>📊</span> En <strong>Mi Mes</strong> y <strong>Mi Año</strong> encontrarás el histórico completo de tu actividad con estadísticas detalladas.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cta">
+      <div class="cta-card">
+        <h2>¿Listo para empezar? 🚖</h2>
+        <p>Descarga Taxi Driver Control gratis y lleva tu negocio como un profesional desde el primer día.</p>
+        <a href="https://apps.apple.com/es/app/taxi-driver-control/id6779477395" target="_blank" class="badge-appstore" aria-label="Descargar en el App Store">
+          <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Disponible en el App Store" />
+        </a>
+        <br/>
+        <a href="/manual.html" class="btn-secondary">📖 Ver manual completo</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="/manual.html">Manual de usuario</a>
+      <a href="/privacidad.html">Política de privacidad</a>
+      <a href="/soporte.html">Soporte</a>
+      <a href="mailto:contacto@taxidrivercontrol.com">contacto@taxidrivercontrol.com</a>
+    </div>
+    <p class="footer-copy">© 2026 Taxi Driver Control · Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navlinks');
+      if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('open');
+          hamburger.setAttribute('aria-expanded', isOpen);
+          hamburger.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.focus();
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
