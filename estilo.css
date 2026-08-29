@@ -73,7 +73,7 @@
   @media (max-width:833px){.nav ul{display:none}.navbtn{display:block}}
 
   /* ---------- typography scale ---------- */
-  .display{font-size:clamp(40px,7.6vw,80px);letter-spacing:-.035em;font-weight:600}
+  .display{font-size:clamp(38px,6.6vw,68px);letter-spacing:-.035em;font-weight:600}
   .headline{font-size:clamp(32px,5vw,48px);letter-spacing:-.03em;font-weight:600}
   .title{font-size:clamp(24px,3.2vw,32px);letter-spacing:-.025em;font-weight:600}
   .intro{font-size:clamp(19px,2.2vw,24px);line-height:1.35;letter-spacing:-.02em;color:var(--muted);font-weight:400}
@@ -95,7 +95,7 @@
   .hero{text-align:center;padding:72px 0 0;background:var(--bg)}
   .hero .badgeline{font-size:14px;font-weight:600;color:var(--brand-ink);background:var(--brand);display:inline-block;padding:5px 13px;border-radius:980px;letter-spacing:0;margin-bottom:20px}
   .hero .display{margin-bottom:16px}
-  .hero .intro{max-width:20ch;margin:0 auto}
+  .hero .intro{max-width:33ch;margin:0 auto}
   .stage{margin-top:44px;padding-bottom:64px;display:flex;justify-content:center}
 
   /* phone */
@@ -305,14 +305,15 @@
 .doc h2{font-size:clamp(26px,3.4vw,36px);letter-spacing:-.03em;line-height:1.1;margin-bottom:10px}
 .doc .seccion-desc{color:var(--muted);font-size:17px}
 .doc .paso{
-  display:grid;grid-template-columns:210px 1fr;gap:34px;align-items:center;
+  display:grid;grid-template-columns:190px 1fr;gap:32px;align-items:center;
   background:var(--bg-alt);border-radius:24px;padding:30px;margin-bottom:16px;
 }
+.doc .paso.invertido{grid-template-columns:1fr 190px}
 .doc .paso.invertido .paso-img-wrap{order:2}
 .doc .paso.invertido .paso-content{order:1}
 .doc .paso-img-wrap{display:flex;justify-content:center}
-.doc .paso-img{width:100%;max-width:200px;border-radius:22px;border:1px solid var(--line);box-shadow:0 14px 36px rgba(0,0,0,.16)}
-.doc .paso-img.ancha{max-width:290px;border-radius:14px}
+.doc .paso-img{width:100%;max-width:172px;border-radius:22px;border:1px solid var(--line);box-shadow:0 14px 36px rgba(0,0,0,.16)}
+.doc .paso-img.ancha{max-width:260px;border-radius:14px}
 .doc .paso-badge{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.02em;color:var(--brand-ink);background:var(--brand);padding:4px 11px;border-radius:980px;margin-bottom:12px}
 .doc .paso-badge.titular{background:var(--chip);color:var(--chip-ink)}
 .doc h3{font-size:21px;letter-spacing:-.025em;line-height:1.2;margin-bottom:8px}
@@ -334,8 +335,8 @@
 .doc .step-desc{color:var(--muted);font-size:16px}
 .doc .step-desc strong{color:var(--ink);font-weight:600}
 .doc .step-desc br{display:none}
-.doc .step-tip{display:flex;gap:10px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:15px}
-.doc .step-tip span:first-child{flex:none}
+.doc .step-tip{display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 15px;margin-top:14px;font-size:15px;line-height:1.5}
+.doc .step-tip > span:first-child{margin-right:7px}
 
 /* --- Inicio rápido: cierre --- */
 .doc .cta{padding:64px 22px 0}
@@ -352,7 +353,7 @@
 /* --- Ajustes responsivos --- */
 @media (max-width:833px){
   .doc .hero{padding:40px 22px 28px}
-  .doc .paso{grid-template-columns:1fr;gap:22px;padding:24px}
+  .doc .paso,.doc .paso.invertido{grid-template-columns:1fr;gap:22px;padding:24px}
   .doc .paso.invertido .paso-img-wrap{order:0}
   .doc .paso.invertido .paso-content{order:0}
   .doc .paso-img{max-width:180px}
