@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Abrir reserva — Taxi Driver Control</title>
+<style>
+  body { font-family: -apple-system, system-ui, sans-serif; background: #f5a623; color: #1a1a1a;
+         display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+  .card { background: #fff; border-radius: 16px; padding: 32px; max-width: 380px; margin: 16px;
+          text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,.2); }
+  .card h1 { font-size: 20px; margin: 0 0 12px; }
+  .card p { font-size: 15px; color: #555; }
+  .btn { display: block; margin: 12px 0; padding: 14px; border-radius: 10px; text-decoration: none;
+         font-weight: bold; font-size: 16px; }
+  .btn.ios { background: #1a1a1a; color: #fff; }
+  .btn.android { background: #e8e8e8; color: #1a1a1a; }
+  #abriendo { font-size: 15px; color: #555; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div id="abriendo">🚕 Abriendo la reserva en la app…</div>
+  <div id="fallback" style="display:none">
+    <h1>📩 Tienes una reserva compartida</h1>
+    <p>Necesitas la app <b>Taxi Driver Control</b> para verla. Descárgala y vuelve a pulsar el enlace.</p>
+    <a class="btn ios" href="https://apps.apple.com/es/app/taxi-driver-control/id6779477395">Descargar en App Store</a>
+    <a class="btn android" href="https://play.google.com/store/apps/details?id=com.anonymous.taxi129pedro">Descargar en Google Play</a>
+  </div>
+</div>
+<script>
+(function () {
+  var token = new URLSearchParams(location.search).get('token');
+  if (!token) {
+    // Por si se sirve con rewrite /r/<token> -> esta página
+    var partes = location.pathname.split('/').filter(Boolean);
+    token = partes[partes.length - 1] || '';
+    if (token === 'r') token = '';
+  }
+  if (token) {
+    // Intenta abrir la app (esquema registrado en app.json)
+    window.location.href = 'taxidrivercontrol://r/' + encodeURIComponent(token);
+  }
+  // Si después de 2.5 s seguimos aquí, no hay app: mostrar descargas
+  setTimeout(function () {
+    document.getElementById('abriendo').style.display = 'none';
+    document.getElementById('fallback').style.display = 'block';
+  }, 2500);
+})();
+</script>
+</body>
+</html>
