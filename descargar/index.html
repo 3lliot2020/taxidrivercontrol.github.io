@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descargar Taxi Driver Control</title>
+<meta name="description" content="Descarga gratis Taxi Driver Control para iPhone o Android.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    background: #fff; color: #1d1d1f;
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 24px;
+  }
+  main { max-width: 520px; }
+  h1 { font-size: 40px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 12px; }
+  h1 .taxi { color: #f5b301; }
+  p.lema { font-size: 19px; color: #6e6e73; margin-bottom: 28px; }
+  p#msg { font-size: 17px; margin-bottom: 20px; }
+  .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btns a {
+    display: inline-block; padding: 14px 28px; border-radius: 999px;
+    background: #1d1d1f; color: #fff; text-decoration: none;
+    font-size: 17px; font-weight: 600;
+  }
+  .btns a.alt { background: #f5b301; color: #1d1d1f; }
+  .spinner {
+    width: 28px; height: 28px; margin: 0 auto 16px;
+    border: 3px solid #e8e8ed; border-top-color: #f5b301; border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>Taxi <span class="taxi">Driver</span> Control</h1>
+  <p class="lema">Tu turno, cuadrado al céntimo. Gratis.</p>
+  <div class="spinner" id="spin"></div>
+  <p id="msg">Abriendo tu tienda…</p>
+  <div class="btns">
+    <a id="btn-ios" href="https://apps.apple.com/es/app/taxi-driver-control/id6779477395">App Store</a>
+    <a id="btn-android" class="alt" href="https://play.google.com/store/apps/details?id=com.anonymous.taxi129pedro">Google Play</a>
+  </div>
+</main>
+<script>
+(function () {
+  var ua = navigator.userAgent || "";
+  var isAndroid = /Android/i.test(ua);
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+              (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  var url = isAndroid ? "https://play.google.com/store/apps/details?id=com.anonymous.taxi129pedro"
+          : isIOS     ? "https://apps.apple.com/es/app/taxi-driver-control/id6779477395"
+          : null;
+  if (url) {
+    setTimeout(function () { location.replace(url); }, 900);
+  } else {
+    document.getElementById("spin").style.display = "none";
+    document.getElementById("msg").textContent = "Elige tu tienda:";
+  }
+})();
+</script>
+</body>
+</html>
