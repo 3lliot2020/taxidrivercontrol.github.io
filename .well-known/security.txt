@@ -1,0 +1,3 @@
+Contact: mailto:paco041@hotmail.com
+Expires: 2027-12-31T23:59:00Z
+Preferred-Languages: es
